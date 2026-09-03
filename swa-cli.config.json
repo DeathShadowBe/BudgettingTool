@@ -7,7 +7,7 @@
       "apiLocation": "",
       "outputLocation": "dist/angular-basic",
       "devserverTimeout": 10000,
-      "open": "true"
+      "open": true
     }
   }
 }
