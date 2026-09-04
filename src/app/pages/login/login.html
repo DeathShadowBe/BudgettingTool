@@ -1,0 +1,22 @@
+<div class="login-container">
+
+  <h1>Budgetting Tool</h1>
+
+  <input
+    [(ngModel)]="username"
+    placeholder="Gebruikersnaam">
+
+  <input
+    [(ngModel)]="password"
+    type="password"
+    placeholder="Wachtwoord">
+
+  <button (click)="login()">
+    Login
+  </button>
+
+  <p style="color:red;">
+    {{error}}
+  </p>
+
+</div>

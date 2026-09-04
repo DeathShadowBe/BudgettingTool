@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { TransactionsComponent } from './pages/transactions/transactions';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [TransactionsComponent],
-  template: '<app-transactions></app-transactions>'
+  imports: [RouterOutlet],
+  template: '<router-outlet />'
 })
 export class AppComponent {
 }
