@@ -1,5 +1,19 @@
 <mat-toolbar color="primary">
-  <span>Budgetting Tool</span>
+  <span>Budget Tool</span>
+
+  <span class="spacer"></span>
+
+  <span class="profile-name">
+    {{ profileName }}
+  </span>
+
+  <button
+    mat-icon-button
+    routerLink="/profile">
+
+    <mat-icon>account_circle</mat-icon>
+
+  </button>
 </mat-toolbar>
 
 <div class="page-container">
