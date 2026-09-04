@@ -1,12 +1,11 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { TransactionsComponent } from './pages/transactions/transactions';
 
 @Component({
-  imports: [RouterOutlet],
   selector: 'app-root',
-  styleUrl: './app.scss',
-  templateUrl: './app.html',
+  standalone: true,
+  imports: [TransactionsComponent],
+  template: '<app-transactions></app-transactions>'
 })
-export class App {
-  protected readonly title = signal('BudgetTool');
+export class AppComponent {
 }

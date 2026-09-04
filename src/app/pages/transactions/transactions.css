@@ -1,0 +1,40 @@
+.page-container {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    height: calc(100vh - 64px);
+}
+
+.left-panel {
+    border-right: 1px solid #e0e0e0;
+    padding: 16px;
+    overflow-y: auto;
+}
+
+.right-panel {
+    padding: 24px;
+    overflow-y: auto;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 900px;
+}
+
+.top-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.bottom-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}

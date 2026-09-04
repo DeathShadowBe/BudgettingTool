@@ -1,0 +1,125 @@
+<mat-toolbar color="primary">
+  <span>Budgetting Tool</span>
+</mat-toolbar>
+
+<div class="page-container">
+
+  <!-- Linkerkolom -->
+  <div class="left-panel">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Zoeken</mat-label>
+      <input matInput>
+    </mat-form-field>
+
+    <mat-nav-list>
+
+      <mat-list-item>
+        <span>01/09/2026 - Carrefour</span>
+      </mat-list-item>
+
+      <mat-list-item>
+        <span>31/08/2026 - Q8</span>
+      </mat-list-item>
+
+      <mat-list-item>
+        <span>30/08/2026 - Restaurant</span>
+      </mat-list-item>
+
+    </mat-nav-list>
+
+  </div>
+
+  <!-- Rechterkolom -->
+  <div class="right-panel">
+
+    <div class="top-buttons">
+
+      <button mat-raised-button color="primary">
+        New
+      </button>
+
+      <button mat-raised-button>
+        Edit
+      </button>
+
+      <button mat-raised-button color="warn">
+        Delete
+      </button>
+
+    </div>
+
+    <form [formGroup]="form">
+
+      <mat-form-field appearance="outline">
+        <mat-label>Datum</mat-label>
+        <input matInput formControlName="datum">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Tegenpartij</mat-label>
+        <input matInput formControlName="tegenpartij">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Bedrag</mat-label>
+        <input matInput formControlName="bedrag">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Categorie</mat-label>
+        <input matInput formControlName="categorie">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Rekening</mat-label>
+        <input matInput formControlName="rekening">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Opmerking</mat-label>
+        <textarea
+          matInput
+          rows="3"
+          formControlName="opmerking">
+        </textarea>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Type</mat-label>
+        <input matInput formControlName="type">
+      </mat-form-field>
+
+      <mat-checkbox formControlName="project">
+        Project
+      </mat-checkbox>
+
+      <mat-checkbox formControlName="intern">
+        Intern
+      </mat-checkbox>
+
+      <mat-form-field appearance="outline">
+        <mat-label>ID</mat-label>
+        <input matInput formControlName="id" readonly>
+      </mat-form-field>
+
+      <div class="bottom-buttons">
+
+        <button mat-button type="button">
+          Cancel
+        </button>
+
+        <button
+          mat-raised-button
+          color="primary"
+          type="button">
+          Submit
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
