@@ -7,7 +7,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "BudgetTool": {
+    "BudgettingTool": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
