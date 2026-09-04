@@ -5,7 +5,7 @@
       "context": "http://localhost:4200",
       "run": "npm start",
       "apiLocation": "",
-      "outputLocation": "dist/BudgettingTool/Browser",
+      "outputLocation": "dist/BudgettingTool/browser",
       "devserverTimeout": 10000,
       "open": true
     }
