@@ -1,3 +1,4 @@
 {
-    "staticWebApps.outputSubpath": "dist/angular-basic"
+    "staticWebApps.outputSubpath": "dist/angular-basic",
+    "sarif-viewer.connectToGithubCodeScanning": "off"
 }
