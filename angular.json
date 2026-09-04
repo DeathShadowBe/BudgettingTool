@@ -62,10 +62,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "BudgetTool:build:production"
+              "buildTarget": "BudgettingTool:build:production"
             },
             "development": {
-              "buildTarget": "BudgetTool:build:development"
+              "buildTarget": "BudgettingTool:build:development"
             }
           },
           "defaultConfiguration": "development"
