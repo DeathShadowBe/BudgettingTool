@@ -1,55 +1,59 @@
-# Angular basic
+# BudgetTool
 
-[Azure Static Web Apps](https://docs.microsoft.com/azure/static-web-apps/overview) allows you to easily build [Angular](https://angular.io/) apps in minutes. Use this repo with the [Angular quickstart](https://docs.microsoft.com/azure/static-web-apps/getting-started?tabs=angular) to build and customize a new static site.
+This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.1.7.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli).
+## Development server
 
-## Project setup
-
-```bash
-npm install
-```
-
-### Start the dev server
+To start a local development server, run:
 
 ```bash
-npm run swa:start
+ng serve
 ```
 
-> Note: This command will use the local configuration file `swa-cli.config.json`.
+Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-### Run unit tests
+## Code scaffolding
+
+Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
 
 ```bash
-npm test
+ng generate component component-name
 ```
 
-### Run e2e tests
+For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
 
 ```bash
-npm run e2e
+ng generate --help
 ```
 
-### Lints and fixes files
+## Building
+
+To build the project run:
 
 ```bash
-npm run lint
+ng build
 ```
 
-### Compiles and minifies for production
+This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+
+## Running unit tests
+
+To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
 
 ```bash
-npm run build
+ng test
 ```
 
-### Login to Azure
+## Running end-to-end tests
+
+For end-to-end (e2e) testing, run:
 
 ```bash
-npm run swa:login
+ng e2e
 ```
 
-### Deploy to Azure
+Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
 
-```bash
-npm run swa:deploy
-```
+## Additional Resources
+
+For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
