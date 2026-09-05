@@ -37,6 +37,8 @@ export class TransactionsComponent {
   showDetails = false;
   username  = '';
   form!: FormGroup;
+  mode: 'view' | 'edit' | 'new' = 'view';
+  selectedTransaction: TransactionsComponent | null = null;
 
   transactions = [
     {
@@ -86,16 +88,22 @@ checkScreenSize(): void {
   this.showDetails = true;
 }
 }
-selectTransaction(): void {
+selectTransaction(transaction: TransactionsComponent): void {
   if (this.isMobile) {
     this.showDetails = true;
   }
+  this.selectedTransaction = transaction;
+  this.mode = 'view';
+  this.form.patchValue(transaction);
 }
 back(): void {
   this.showDetails = false;
 }
 createNew(): void {
   this.showDetails = true;
+  this.selectedTransaction = null;
+  this.mode = 'new';
+  this.form.reset();
 }
 
 ngOnInit(): void {
@@ -109,6 +117,27 @@ logout(): void {
   this.router.navigate(
     ['/']
   );
-
 }
+
+edit(): void {
+  this.mode = 'edit';
+}
+
+cancel(): void {
+  this.mode = 'view';
+  this.selectedTransaction = null;
+  this.form.reset();
+}
+
+submit(): void {
+
+  if (this.form.invalid) {
+    return;
+  }
+
+  this.mode = 'view';
+}
+
+
+
 }
