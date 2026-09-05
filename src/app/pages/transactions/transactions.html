@@ -3,23 +3,22 @@
 
   <span class="spacer"></span>
 
-  <span class="profile-name">
-    {{ profileName }}
-  </span>
-
   <button
-    mat-icon-button
-    routerLink="/profile">
+    mat-button
+    (click)="logout()">
 
-    <mat-icon>account_circle</mat-icon>
+    Logout
 
   </button>
 </mat-toolbar>
 
 <div class="page-container">
 
-  <!-- Linkerkolom -->
-  <div class="left-panel">
+  @if (!isMobile) {
+
+<div class="desktop-container">
+
+  <div class="list-panel">
 
     <mat-form-field appearance="outline">
       <mat-label>Zoeken</mat-label>
@@ -28,112 +27,99 @@
 
     <mat-nav-list>
 
-      <mat-list-item>
-        <span>01/09/2026 - Carrefour</span>
+      @for (transaction of transactions; track transaction.id) {
+
+      <mat-list-item
+        (click)="selectTransaction()">
+
+        {{ transaction.datum }}
+        -
+        {{ transaction.tegenpartij }}
+
       </mat-list-item>
 
-      <mat-list-item>
-        <span>31/08/2026 - Q8</span>
-      </mat-list-item>
-
-      <mat-list-item>
-        <span>30/08/2026 - Restaurant</span>
-      </mat-list-item>
+      }
 
     </mat-nav-list>
+    <button
+    mat-raised-button
+    color="primary"
+    class="new-button"
+    (click)="createNew()">
+
+    Nieuw
+
+  </button>
 
   </div>
 
-  <!-- Rechterkolom -->
-  <div class="right-panel">
+  <div class="detail-panel">
 
-    <div class="top-buttons">
-
-      <button mat-raised-button color="primary">
-        New
-      </button>
-
-      <button mat-raised-button>
-        Edit
-      </button>
-
-      <button mat-raised-button color="warn">
-        Delete
-      </button>
-
-    </div>
-
-    <form [formGroup]="form">
-
-      <mat-form-field appearance="outline">
-        <mat-label>Datum</mat-label>
-        <input matInput formControlName="datum">
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Tegenpartij</mat-label>
-        <input matInput formControlName="tegenpartij">
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Bedrag</mat-label>
-        <input matInput formControlName="bedrag">
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Categorie</mat-label>
-        <input matInput formControlName="categorie">
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Rekening</mat-label>
-        <input matInput formControlName="rekening">
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Opmerking</mat-label>
-        <textarea
-          matInput
-          rows="3"
-          formControlName="opmerking">
-        </textarea>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Type</mat-label>
-        <input matInput formControlName="type">
-      </mat-form-field>
-
-      <mat-checkbox formControlName="project">
-        Project
-      </mat-checkbox>
-
-      <mat-checkbox formControlName="intern">
-        Intern
-      </mat-checkbox>
-
-      <mat-form-field appearance="outline">
-        <mat-label>ID</mat-label>
-        <input matInput formControlName="id" readonly>
-      </mat-form-field>
-
-      <div class="bottom-buttons">
-
-        <button mat-button type="button">
-          Cancel
-        </button>
-
-        <button
-          mat-raised-button
-          color="primary"
-          type="button">
-          Submit
-        </button>
-
-      </div>
-
-    </form>
+    <!-- huidig formulier -->
 
   </div>
+
+</div>
+
+}
+
+@if (isMobile && !showDetails) {
+
+<div class="mobile-list">
+
+  <mat-form-field appearance="outline">
+    <mat-label>Zoeken</mat-label>
+    <input matInput>
+  </mat-form-field>
+
+  <mat-nav-list>
+
+    @for (transaction of transactions; track transaction.id) {
+
+    <mat-list-item
+      (click)="selectTransaction()">
+
+      {{ transaction.datum }}
+      -
+      {{ transaction.tegenpartij }}
+
+    </mat-list-item>
+
+    }
+
+  </mat-nav-list>
+
+  <button
+    mat-raised-button
+    color="primary"
+    class="new-button"
+    (click)="createNew()">
+
+    Nieuw
+
+  </button>
+
+</div>
+
+}
+
+@if (isMobile && showDetails) {
+
+<div class="mobile-detail">
+
+  <button
+    mat-button
+    (click)="back()">
+
+    ← Terug
+
+  </button>
+
+  <!-- huidig formulier -->
+
+</div>
+
+}
+  
 
 </div>

@@ -39,6 +39,10 @@ export class LoginComponent {
       password: ['', Validators.required]
     });
 
+    if (this.auth.isAuthenticated()) {
+      this.router.navigate(['/transactions']);
+    }
+
   }
 
   login(): void {
@@ -64,6 +68,5 @@ export class LoginComponent {
     this.error = 'Ongeldige login';
 
   }
-
 }
 }

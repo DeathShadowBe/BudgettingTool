@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
-import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
@@ -12,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-transactions',
@@ -32,9 +33,34 @@ import { MatCardModule } from '@angular/material/card';
 })
 export class TransactionsComponent {
 
+  isMobile = false;
+  showDetails = false;
+  username  = '';
   form!: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  transactions = [
+    {
+    id: '1',
+    datum: '01/09/2026',
+    tegenpartij: 'Carrefour'
+    },
+    {
+    id: '2',
+    datum: '31/08/2026',
+    tegenpartij: 'Q8'
+    },
+    {
+    id: '3',
+    datum: '30/08/2026',
+    tegenpartij: 'Restaurant'
+    }
+  ];
+  
+  constructor(private fb: FormBuilder,
+      private auth: AuthService,
+      private router: Router) {
+
+    this.checkScreenSize();
 
     this.form = this.fb.group({
       datum: [''],
@@ -50,16 +76,39 @@ export class TransactionsComponent {
     });
 }
 
-profileName = '';
+@HostListener('window:resize')
+  onResize(): void {
+  this.checkScreenSize();
+}
+checkScreenSize(): void {
+  this.isMobile = window.innerWidth < 768;
+  if (!this.isMobile) {
+  this.showDetails = true;
+}
+}
+selectTransaction(): void {
+  if (this.isMobile) {
+    this.showDetails = true;
+  }
+}
+back(): void {
+  this.showDetails = false;
+}
+createNew(): void {
+  this.showDetails = true;
+}
 
 ngOnInit(): void {
+  this.username = this.auth.getUsername();
+}
 
-  const profile = localStorage.getItem('profile');
+logout(): void {
 
-  if (profile) {
-    this.profileName =
-      JSON.parse(profile).name;
-  }
+  this.auth.logout();
+
+  this.router.navigate(
+    ['/']
+  );
 
 }
 }
