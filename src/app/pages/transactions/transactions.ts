@@ -39,6 +39,7 @@ export class TransactionsComponent {
   form!: FormGroup;
   mode: 'view' | 'edit' | 'new' = 'view';
   selectedTransaction: TransactionsComponent | null = null;
+  searchText = '';
 
   transactions = [
     {
@@ -94,7 +95,9 @@ selectTransaction(transaction: TransactionsComponent): void {
   }
   this.selectedTransaction = transaction;
   this.mode = 'view';
-  this.form.patchValue(transaction);
+  setTimeout(() => {
+    this.form.patchValue(transaction);
+  });
 }
 back(): void {
   this.showDetails = false;
@@ -138,6 +141,15 @@ submit(): void {
   this.mode = 'view';
 }
 
+get filteredTransactions() {
 
+  const search = this.searchText.toLowerCase();
+
+  return this.transactions.filter(t =>
+    t.id?.toLowerCase().includes(search) ||
+    t.datum?.toLowerCase().includes(search) ||
+    t.tegenpartij?.toLowerCase().includes(search)
+  );
+}
 
 }
