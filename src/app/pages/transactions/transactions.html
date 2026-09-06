@@ -269,17 +269,42 @@
 
     <div class="bottom-buttons">
 
-      <button mat-button>
+      @if (mode === 'view') {
+
+      <button
+        mat-button
+        (click)="cancel()">
+
+        Annuleer
+
+      </button>
+
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="edit()">
+
+        Aanpassen
+
+      </button>
+    }
+
+    @if (mode !== 'view') {
+
+      <button mat-button
+      (click)="cancel()">
         Annuleer
       </button>
 
       <button
         mat-raised-button
-        color="primary">
+        color="primary"
+        (click)="submit()">
 
         Verzenden
 
       </button>
+    }
 
     </div>
 
