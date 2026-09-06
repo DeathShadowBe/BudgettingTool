@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -20,13 +21,15 @@ import { AuthService } from '../../services/auth.service';
   imports: [
     ReactiveFormsModule,
     MatToolbarModule,
+    MatMenuModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
     MatCheckboxModule,
     MatListModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    MatTooltipModule
   ],
   templateUrl: './transactions.html',
   styleUrl: './transactions.css'
@@ -150,6 +153,16 @@ get filteredTransactions() {
     t.datum?.toLowerCase().includes(search) ||
     t.tegenpartij?.toLowerCase().includes(search)
   );
+}
+
+openProfile(): void {
+
+  this.router.navigate(['/profile']);
+
+}
+
+get avatarLetter(): string {
+  return this.username.charAt(0).toUpperCase();
 }
 
 }

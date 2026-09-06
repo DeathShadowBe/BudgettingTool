@@ -3,6 +3,7 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -14,7 +15,8 @@ export class ProfileComponent {
 
   profileForm;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+    private router: Router) {
 
     this.profileForm = this.fb.group({
       name: ['Bjorn Hauben']
@@ -24,15 +26,15 @@ export class ProfileComponent {
 
   save(): void {
 
-    const profile = this.profileForm.value;
+    const username = this.profileForm.value;
 
     localStorage.setItem(
-      'profile',
-      JSON.stringify(profile)
+      'username',
+      JSON.stringify(username)
     );
-
-    console.log('saved', profile);
-
   }
 
+  back(): void{
+    this.router.navigate(['/']);
+  }
 }

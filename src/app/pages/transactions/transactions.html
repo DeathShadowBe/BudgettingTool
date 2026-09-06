@@ -1,18 +1,48 @@
 <div class="page-container">
 
   <mat-toolbar color="primary">
-  <span>Welkom {{ username }}</span>
+  <div class="menu-header">
+    Welkom
+  </div>
 
-  <span class="spacer"></span>
+  <mat-divider></mat-divider>
 
   <button
-    mat-button
-    (click)="logout()">
+    mat-icon-button
+    [matMenuTriggerFor]="profileMenu"
+    class="logout-button">
 
-    Logout
+    <div class="avatar">
+      {{ avatarLetter }}
+    </div>
 
   </button>
+
 </mat-toolbar>
+
+<mat-menu #profileMenu="matMenu">
+
+  <button
+    mat-menu-item
+    (click)="openProfile()">
+
+    <mat-icon>person</mat-icon>
+
+    <span>Profiel</span>
+
+  </button>
+
+  <button
+    mat-menu-item
+    (click)="logout()">
+
+    <mat-icon>logout</mat-icon>
+
+    <span>Uitloggen</span>
+
+  </button>
+
+</mat-menu>
 
   @if (!isMobile) {
 
