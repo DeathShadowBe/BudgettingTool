@@ -113,12 +113,7 @@ createNew(): void {
 }
 
 logout(): void {
-
   this.auth.logout();
-
-  this.router.navigate(
-    ['/']
-  );
 }
 
 edit(): void {
