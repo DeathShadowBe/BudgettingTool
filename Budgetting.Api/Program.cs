@@ -31,7 +31,16 @@ if (app.Environment.IsDevelopment())
     
 }
 
+app.UseCors("AngularPolicy");
+
 app.UseHttpsRedirection();
+
+app.MapGet("/", () => "API werkt");
+
+app.MapGet("/api/users", async (AppDbContext db) =>
+{
+    return await db.Users.ToListAsync();
+});
 
 app.MapPost("/api/auth/login",
     async (
@@ -58,14 +67,5 @@ app.MapPost("/api/auth/login",
         user.Email
     });
 });
-
-app.MapGet("/", () => "API werkt");
-
-app.MapGet("/api/users", async (AppDbContext db) =>
-{
-    return await db.Users.ToListAsync();
-});
-
-app.UseCors("AngularPolicy");
 
 app.Run();
