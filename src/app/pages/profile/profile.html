@@ -66,11 +66,10 @@
             formControlName="confirmPassword">
         </mat-form-field>
 
-        <div class="button-row">
+        <div>
 
           <button
             mat-button
-            type="button"
             (click)="back()">
 
             Terug
@@ -80,7 +79,7 @@
           <button
             mat-raised-button
             color="primary"
-            type="submit">
+            (click)="submit()">
 
             Opslaan
 
