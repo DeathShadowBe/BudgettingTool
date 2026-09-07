@@ -46,8 +46,8 @@ export class LoginComponent {
   }
 
   login(): void {
-
-  const username =
+  
+    const username =
     this.loginForm.value.username;
 
   const password =
@@ -60,7 +60,7 @@ export class LoginComponent {
         next: (user) => {
 
           localStorage.setItem(
-            'user',
+            'username',
             JSON.stringify(user)
           );
 
