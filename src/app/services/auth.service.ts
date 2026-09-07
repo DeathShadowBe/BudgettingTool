@@ -12,8 +12,7 @@ export class AuthService {
   private readonly USERNAME = 'bjorn';
   private readonly PASSWORD = 'test123';
   
-  private api =
-  `${environment.apiUrl}/auth/login`;
+  private api = `${environment.apiUrl}/auth/login`;
 
   constructor(
   private http: HttpClient
