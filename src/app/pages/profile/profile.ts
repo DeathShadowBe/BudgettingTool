@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [ReactiveFormsModule, MatCardModule, MatFormFieldModule, MatInputModule, Router],
+  imports: [ReactiveFormsModule, MatCardModule, MatFormFieldModule, MatInputModule],
   templateUrl: './profile.html'
 })
 export class ProfileComponent {
