@@ -8,9 +8,6 @@ import { environment } from '../../environments/environment';
 })
 
 export class AuthService {
-
-  private readonly USERNAME = 'bjorn';
-  private readonly PASSWORD = 'test123';
   
   private api = `${environment.apiUrl}/auth/login`;
 
@@ -39,7 +36,13 @@ export class AuthService {
     return localStorage.getItem('username') !== null;
   }
 
-  getUsername(): string {
-    return localStorage.getItem('username') ?? '';
+  getCurrentUser() {
+    const user =
+      localStorage.getItem('username');
+
+    return user
+      ? JSON.parse(user)
+      : null;
   }
+
 }

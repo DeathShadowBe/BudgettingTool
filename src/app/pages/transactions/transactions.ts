@@ -112,10 +112,6 @@ createNew(): void {
   this.form.reset();
 }
 
-ngOnInit(): void {
-  this.username = this.auth.getUsername();
-}
-
 logout(): void {
 
   this.auth.logout();
@@ -162,7 +158,7 @@ openProfile(): void {
 }
 
 get avatarLetter(): string {
-  return this.username.charAt(0).toUpperCase();
+  return this.auth.getCurrentUser()?.username?.charAt(0)?.toUpperCase() ?? '?';
 }
 
 }
