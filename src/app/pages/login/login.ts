@@ -57,11 +57,11 @@ export class LoginComponent {
       .login(username, password)
       .subscribe({
 
-        next: (user) => {
+        next: (username) => {
 
           localStorage.setItem(
             'username',
-            JSON.stringify(user)
+            JSON.stringify(username)
           );
 
           this.router.navigate(
