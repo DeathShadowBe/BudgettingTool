@@ -1,0 +1,62 @@
+using Budgetting.Api.Data;
+using Budgetting.Api.Models;
+using Microsoft.EntityFrameworkCore;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection")));
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    
+}
+
+app.UseHttpsRedirection();
+
+app.MapPost("/api/auth/login",
+    async (
+        LoginRequest request,
+        AppDbContext db
+    ) =>
+{
+    var user = await db.Users
+        .FirstOrDefaultAsync(x =>
+            x.Username == request.Username &&
+            x.PasswordHash == request.Password);
+
+    if (user is null)
+    {
+        return Results.Unauthorized();
+    }
+
+    return Results.Ok(new
+    {
+        user.Id,
+        user.Username,
+        user.FirstName,
+        user.LastName,
+        user.Email
+    });
+});
+
+app.MapGet("/", () => "API werkt");
+
+app.MapGet("/api/users", async (AppDbContext db) =>
+{
+    return await db.Users.ToListAsync();
+});
+
+app.Run();
+
+record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
+{
+    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+}

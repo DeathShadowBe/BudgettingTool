@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [ReactiveFormsModule, MatCardModule, MatFormFieldModule, MatInputModule],
+  imports: [ReactiveFormsModule, MatCardModule, MatFormFieldModule, MatInputModule, Router],
   templateUrl: './profile.html'
 })
 export class ProfileComponent {
@@ -19,7 +19,22 @@ export class ProfileComponent {
     private router: Router) {
 
     this.profileForm = this.fb.group({
-      name: ['Bjorn Hauben']
+      username: [{ value: 'bjorn', disabled: true }],
+      email: [
+        'bjorn@email.be',
+        [Validators.required, Validators.email]
+      ],
+      naam: [
+        'Hauben',
+        Validators.required
+      ],
+      voornaam: [
+        'Bjorn',
+        Validators.required
+      ],
+      currentPassword: [''],
+      newPassword: [''],
+      confirmPassword: ['']
     });
 
   }
