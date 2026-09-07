@@ -11,6 +11,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { provideHttpClient } from '@angular/common/http';
+
+providers: [
+  provideHttpClient()
+]
 
 @Component({
   selector: 'app-login',
@@ -47,26 +52,38 @@ export class LoginComponent {
 
   login(): void {
 
-  if (this.loginForm.invalid) {
-    return;
-  }
+  const username =
+    this.loginForm.value.username;
 
-  const username = this.loginForm.value.username;
-  const password = this.loginForm.value.password;
+  const password =
+    this.loginForm.value.password;
 
-  const success = this.auth.login(
-    username,
-    password
-  );
+  this.auth
+      .login(username, password)
+      .subscribe({
 
-  if (success) {
+        next: (user) => {
 
-    this.router.navigate(['/transactions']);
+          localStorage.setItem(
+            'user',
+            JSON.stringify(user)
+          );
 
-  } else {
+          this.router.navigate(
+            ['/transactions']
+          );
 
-    this.error = 'Ongeldige login';
+        },
 
-  }
+        error: () => {
+
+          alert(
+            'Gebruikersnaam of wachtwoord ongeldig'
+          );
+
+        }
+
+      });
+
 }
 }

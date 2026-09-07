@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -13,18 +15,20 @@ export class AuthService {
   private api =
   `${environment.apiUrl}/auth/login`;
 
-  login(username: string, password: string): boolean {
+  constructor(
+  private http: HttpClient
+  ) {
+  }
 
-    const success =
-      username === this.USERNAME &&
-      password === this.PASSWORD;
+  login(username: string, password: string): Observable<any> {
 
-    if (success){
-      localStorage.setItem('authenticated', 'true');
-      localStorage.setItem('username',username);
-      return true;
-    }
-    return false;
+    return this.http.post(
+      this.api,
+      {
+      username,
+      password
+      }
+      );
   }
 
   logout(): void {
@@ -33,9 +37,7 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    return localStorage.getItem(
-    'authenticated'
-    ) === 'true';
+    return localStorage.getItem('user') !== null;
   }
 
   getUsername(): string {
