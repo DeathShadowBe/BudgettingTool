@@ -44,20 +44,14 @@ export class ProfileComponent {
           Validators.required,
           Validators.email
         ]
-      ],
-
-      currentPassword: [''],
-      newPassword: [''],
-      confirmPassword: ['']
+      ]
 
     });
 
   }
 
   save(): void {
-
-  const form = this.profileForm.getRawValue();
-
+    const form = this.profileForm.getRawValue();
   console.log(form);
 
 }

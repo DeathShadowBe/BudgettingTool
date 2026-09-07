@@ -10,8 +10,7 @@
 
       <form
         class="profile-form"
-        [formGroup]="profileForm"
-        (ngSubmit)="save()">
+        [formGroup]="profileForm">
 
         <mat-form-field appearance="outline">
           <mat-label>Gebruikersnaam</mat-label>
@@ -42,30 +41,6 @@
             formControlName="email">
         </mat-form-field>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Huidig wachtwoord</mat-label>
-          <input
-            matInput
-            type="password"
-            formControlName="currentPassword">
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <mat-label>Nieuw wachtwoord</mat-label>
-          <input
-            matInput
-            type="password"
-            formControlName="newPassword">
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <mat-label>Bevestig nieuw wachtwoord</mat-label>
-          <input
-            matInput
-            type="password"
-            formControlName="confirmPassword">
-        </mat-form-field>
-
         <div>
 
           <button
@@ -79,7 +54,7 @@
           <button
             mat-raised-button
             color="primary"
-            (click)="submit()">
+            (click)="save()">
 
             Opslaan
 
