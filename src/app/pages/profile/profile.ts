@@ -4,6 +4,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -15,39 +16,50 @@ export class ProfileComponent {
 
   profileForm;
 
-  constructor(private fb: FormBuilder,
-    private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private auth: AuthService,
+    private router: Router
+  ) {
+
+    const user = this.auth.getCurrentUser();
 
     this.profileForm = this.fb.group({
-      username: [{ value: 'bjorn', disabled: true }],
-      email: [
-        'bjorn@email.be',
-        [Validators.required, Validators.email]
-      ],
-      naam: [
-        'Hauben',
-        Validators.required
+
+      username: [
+        { value: user?.username ?? '', disabled: true }
       ],
       voornaam: [
-        'Bjorn',
+        user?.firstName ?? '',
         Validators.required
       ],
+      naam: [
+        user?.lastName ?? '',
+        Validators.required
+      ],
+      email: [
+        user?.email ?? '',
+        [
+          Validators.required,
+          Validators.email
+        ]
+      ],
+
       currentPassword: [''],
       newPassword: [''],
       confirmPassword: ['']
+
     });
 
   }
 
   save(): void {
 
-    const username = this.profileForm.value;
+  const form = this.profileForm.getRawValue();
 
-    localStorage.setItem(
-      'username',
-      JSON.stringify(username)
-    );
-  }
+  console.log(form);
+
+}
 
   back(): void{
     this.router.navigate(['/']);

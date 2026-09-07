@@ -1,41 +1,97 @@
-<mat-card>
+<div class="profile-container">
 
-  <mat-card-header>
-    <mat-card-title>Profiel</mat-card-title>
-  </mat-card-header>
+  <mat-card class="profile-card">
 
-  <mat-card-content>
+    <mat-card-header>
+      <mat-card-title>Profiel</mat-card-title>
+    </mat-card-header>
 
-    <form [formGroup]="profileForm">
+    <mat-card-content>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Naam</mat-label>
-        <input
-          matInput
-          formControlName="name">
-      </mat-form-field>
+      <form
+        class="profile-form"
+        [formGroup]="profileForm"
+        (ngSubmit)="save()">
 
-    </form>
+        <mat-form-field appearance="outline">
+          <mat-label>Gebruikersnaam</mat-label>
+          <input
+            matInput
+            formControlName="username"
+            readonly>
+        </mat-form-field>
 
-  </mat-card-content>
+        <mat-form-field appearance="outline">
+          <mat-label>Voornaam</mat-label>
+          <input
+            matInput
+            formControlName="voornaam">
+        </mat-form-field>
 
-  <mat-card-actions>
+        <mat-form-field appearance="outline">
+          <mat-label>Naam</mat-label>
+          <input
+            matInput
+            formControlName="naam">
+        </mat-form-field>
 
-    <button
-      mat-button
-      (click)="back()">
-      Terug
-    </button>
+        <mat-form-field appearance="outline">
+          <mat-label>E-mailadres</mat-label>
+          <input
+            matInput
+            formControlName="email">
+        </mat-form-field>
 
-    <button
-      mat-raised-button
-      color="primary"
-      (click)="save()">
+        <mat-form-field appearance="outline">
+          <mat-label>Huidig wachtwoord</mat-label>
+          <input
+            matInput
+            type="password"
+            formControlName="currentPassword">
+        </mat-form-field>
 
-      Opslaan
+        <mat-form-field appearance="outline">
+          <mat-label>Nieuw wachtwoord</mat-label>
+          <input
+            matInput
+            type="password"
+            formControlName="newPassword">
+        </mat-form-field>
 
-    </button>
+        <mat-form-field appearance="outline">
+          <mat-label>Bevestig nieuw wachtwoord</mat-label>
+          <input
+            matInput
+            type="password"
+            formControlName="confirmPassword">
+        </mat-form-field>
 
-  </mat-card-actions>
+        <div class="button-row">
 
-</mat-card>
+          <button
+            mat-stroked-button
+            type="button"
+            (click)="back()">
+
+            Terug
+
+          </button>
+
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit">
+
+            Opslaan
+
+          </button>
+
+        </div>
+
+      </form>
+
+    </mat-card-content>
+
+  </mat-card>
+
+</div>
