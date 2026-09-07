@@ -29,16 +29,16 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('authenticated');
-    localStorage.removeItem('username');
+    localStorage.removeItem('user');
   }
 
   isAuthenticated(): boolean {
-    return localStorage.getItem('username') !== null;
+    return localStorage.getItem('user') !== null;
   }
 
   getCurrentUser() {
     const user =
-      localStorage.getItem('username');
+      localStorage.getItem('user');
 
     return user
       ? JSON.parse(user)

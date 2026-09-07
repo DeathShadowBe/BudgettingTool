@@ -60,7 +60,7 @@ export class LoginComponent {
         next: (user) => {
 
           localStorage.setItem(
-            'username',
+            'user',
             user
           );
 
