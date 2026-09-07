@@ -52,9 +52,8 @@ export class ProfileComponent {
 
   save(): void {
     const form = this.profileForm.getRawValue();
-  console.log(form);
-
-}
+    console.log(form);
+  }
 
   back(): void{
     this.router.navigate(['/']);
