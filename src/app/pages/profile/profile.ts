@@ -10,7 +10,8 @@ import { AuthService } from '../../services/auth.service';
   selector: 'app-profile',
   standalone: true,
   imports: [ReactiveFormsModule, MatCardModule, MatFormFieldModule, MatInputModule],
-  templateUrl: './profile.html'
+  templateUrl: './profile.html',
+  styleUrl: './profile.scss'
 })
 export class ProfileComponent {
 
