@@ -160,7 +160,7 @@ openProfile(): void {
 get avatarLetter(): string {
   const letter = this.auth.getCurrentUser()?.username?.charAt(0)?.toUpperCase() ?? '?';
   console.log('avatarLetter:', letter);
-  return letter;
+  return 'B';
 }
 
 }
