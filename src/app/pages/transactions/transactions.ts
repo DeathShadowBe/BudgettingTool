@@ -159,7 +159,6 @@ openProfile(): void {
 
 get avatarLetter(): string {
   const avatarLetter = this.auth.getCurrentUser()?.username?.charAt(0)?.toUpperCase() ?? '?';
-  console.log('avatarLetter:', avatarLetter);
   return avatarLetter;
 }
 

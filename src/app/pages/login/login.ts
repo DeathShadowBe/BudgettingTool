@@ -61,7 +61,7 @@ export class LoginComponent {
 
           localStorage.setItem(
             'user',
-            user
+            JSON.stringify(user)
           );
 
           this.router.navigate(
