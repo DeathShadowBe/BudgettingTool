@@ -208,36 +208,40 @@
 <div class="mobile-list">
 
   <mat-form-field appearance="outline">
-    <mat-label>Zoeken</mat-label>
-    <input matInput>
-  </mat-form-field>
+      <mat-label>Zoeken</mat-label>
+      <input matInput
+      [(ngModel)]="searchText"
+      (ngModelChange)="pageIndex = 0">
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="primary"
+      class="new-button"
+      (click)="createNew()">
+
+      Nieuw
+
+    </button>
 
   <mat-nav-list>
+      <mat-list-item
+        *ngFor="let transaction of pagedTransactions"
+        (click)="selectTransaction(transaction)">
 
-    @for (transaction of transactions; track transaction.id) {
+        {{ transaction.datum | date:'dd/MM/yyyy' }}
+        -
+        {{ transaction.tegenpartij }}
 
-    <mat-list-item
-      (click)="selectTransaction()">
+      </mat-list-item>
+    </mat-nav-list>
 
-      {{ transaction.datum }}
-      -
-      {{ transaction.tegenpartij }}
-
-    </mat-list-item>
-
-    }
-
-  </mat-nav-list>
-
-  <button
-    mat-raised-button
-    color="primary"
-    class="new-button"
-    (click)="createNew()">
-
-    Nieuw
-
-  </button>
+    <mat-paginator
+      [length]="filteredTransactions.length"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="[10,25,50,100]"
+      (page)="pageIndex = $event.pageIndex; pageSize = $event.pageSize">
+    </mat-paginator>
 
 </div>
 
@@ -251,27 +255,32 @@
 
     <mat-form-field appearance="outline">
       <mat-label>Datum</mat-label>
-      <input matInput formControlName="datum">
+      <input matInput formControlName="datum"
+      [readonly]="mode === 'view'">
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Tegenpartij</mat-label>
-      <input matInput formControlName="tegenpartij">
+      <input matInput formControlName="tegenpartij"
+      [readonly]="mode === 'view'">
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Bedrag</mat-label>
-      <input matInput formControlName="bedrag">
+      <input matInput formControlName="bedrag"
+      [readonly]="mode === 'view'">
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Categorie</mat-label>
-      <input matInput formControlName="categorie">
+      <input matInput formControlName="categorie"
+      [readonly]="mode === 'view'">
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Rekening</mat-label>
-      <input matInput formControlName="rekening">
+      <input matInput formControlName="rekening"
+      [readonly]="mode === 'view'">
     </mat-form-field>
 
     <mat-form-field appearance="outline">
@@ -279,13 +288,15 @@
       <textarea
         matInput
         rows="3"
-        formControlName="opmerking">
+        formControlName="opmerking"
+        [readonly]="mode === 'view'">
       </textarea>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Type</mat-label>
-      <input matInput formControlName="type">
+      <input matInput formControlName="type"
+      [readonly]="mode === 'view'">
     </mat-form-field>
 
     <mat-checkbox formControlName="project">
