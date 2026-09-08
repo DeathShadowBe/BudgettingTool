@@ -182,7 +182,7 @@ async (HttpRequest request, AppDbContext db) =>
         await db.SaveChangesAsync();
     }
     catch (Exception ex){
-        return Results.BadRequest(ex.ToString())
+        return Results.BadRequest(ex.ToString());
     }
 
     return Results.Ok();
