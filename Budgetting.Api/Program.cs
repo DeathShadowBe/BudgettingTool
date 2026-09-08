@@ -68,4 +68,36 @@ app.MapPost("/api/auth/login",
     });
 });
 
+app.MapPut("/api/profile",
+async (
+    UpdateProfileRequest request,
+    AppDbContext db
+) =>
+{
+    var user = await db.Users
+        .FirstOrDefaultAsync(x =>
+            x.Id == request.Id);
+
+    if (user is null)
+    {
+        return Results.NotFound();
+    }
+
+    user.Email = request.Email;
+    user.FirstName = request.FirstName;
+    user.LastName = request.LastName;
+
+    await db.SaveChangesAsync();
+
+    return Results.Ok(new
+    {
+        user.Id,
+        user.Username,
+        user.FirstName,
+        user.LastName,
+        user.Email
+    });
+});
+``
+
 app.Run();

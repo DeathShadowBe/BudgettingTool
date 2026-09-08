@@ -42,4 +42,12 @@ export class AuthService {
     return user ? JSON.parse(user): null;
   }
 
+  
+  updateProfile(profile: any) {
+    return this.http.put(
+      'https://budgetting-api-f8bpe9hpdxc5f9ec.westeurope-01.azurewebsites.net/api/profile',
+      profile
+    );
+  }
+
 }

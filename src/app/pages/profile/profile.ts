@@ -51,12 +51,69 @@ export class ProfileComponent {
 
   }
 
-  save(): void {
-    const form = this.profileForm.getRawValue();
-    console.log(form);
+  ngOnInit(): void {
+
+  const user =
+    this.auth.getCurrentUser();
+
+    this.profileForm.patchValue({
+
+      username: user.username,
+      voornaam: user.firstName,
+      naam: user.lastName,
+      email: user.email
+
+    });
+
   }
 
   back(): void{
     this.router.navigate(['/']);
+  }
+
+  save(): void {
+    const currentUser =
+      this.auth.getCurrentUser();
+
+    const form =
+      this.profileForm.getRawValue();
+
+    const request = {
+
+      id: currentUser.id,
+
+      email: form.email,
+
+      firstName: form.voornaam,
+
+      lastName: form.naam
+
+    };
+
+    this.auth
+        .updateProfile(request)
+        .subscribe({
+
+          next: (updatedUser) => {
+
+            localStorage.setItem(
+              'user',
+              JSON.stringify(updatedUser)
+            );
+
+            alert('Profiel opgeslagen');
+
+          },
+
+          error: () => {
+
+            alert(
+              'Opslaan mislukt'
+            );
+
+          }
+
+        });
+
   }
 }

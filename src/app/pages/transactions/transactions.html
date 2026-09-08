@@ -145,7 +145,8 @@
     <mat-form-field appearance="outline">
       <mat-label>ID</mat-label>
       <input matInput formControlName="id"
-      [readonly]="mode === 'view'">
+      readonly
+      disabled>
     </mat-form-field>
 
     <div class="bottom-buttons">
@@ -292,7 +293,9 @@
 
     <mat-form-field appearance="outline">
       <mat-label>ID</mat-label>
-      <input matInput formControlName="id">
+      <input matInput formControlName="id"
+      readonly
+      disabled>
     </mat-form-field>
 
     <div class="bottom-buttons">
