@@ -1,3 +1,5 @@
+namespace Budgetting.Api.Models;
+
 public class UpdateProfileRequest
 {
     public Guid Id { get; set; }

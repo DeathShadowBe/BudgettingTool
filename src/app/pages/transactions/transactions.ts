@@ -156,6 +156,10 @@ openProfile(): void {
   this.router.navigate(['/profile']);
 }
 
+importTransactions(): void {
+  this.router.navigate(['/import']);
+}
+
 updateFormMode(): void {
   if (this.mode === 'view') {
     this.form.get('project')?.disable();

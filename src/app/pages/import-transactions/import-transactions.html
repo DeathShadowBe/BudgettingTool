@@ -1,0 +1,36 @@
+<div class="import-container">
+
+  <mat-card>
+
+    <mat-card-header>
+      <mat-card-title>
+        CSV Import
+      </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+
+      <input
+        type="file"
+        accept=".csv"
+        (change)="onFileSelected($event)">
+
+    </mat-card-content>
+
+    <mat-card-actions>
+
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="importCsv()"
+        [disabled]="uploading">
+
+        Import CSV
+
+      </button>
+
+    </mat-card-actions>
+
+  </mat-card>
+
+</div>
