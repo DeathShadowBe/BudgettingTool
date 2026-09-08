@@ -55,6 +55,10 @@
       <input matInput>
     </mat-form-field>
 
+    <div *ngFor="let transaction of filteredTransactions">
+      {{ transaction.tegenpartij }}
+    </div>
+
     <mat-nav-list>
 
       <mat-list-item
