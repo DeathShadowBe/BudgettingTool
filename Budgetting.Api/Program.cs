@@ -94,6 +94,7 @@ app.MapPost("/api/auth/login",
 app.MapPost("/api/transactions/import",
 async (HttpRequest request, AppDbContext db) =>
 {
+    try{
     var form = await request.ReadFormAsync();
 
     var file = form.Files.FirstOrDefault();
@@ -186,6 +187,10 @@ async (HttpRequest request, AppDbContext db) =>
     }
 
     return Results.Ok();
+    }
+    catch (Exception ex){
+        return Results.Problem(detail: ex.ToString(), statusCode: 500);
+    }
 });
 
 app.MapPut("/api/profile",
