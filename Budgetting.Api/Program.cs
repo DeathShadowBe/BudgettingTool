@@ -122,10 +122,26 @@ async (HttpRequest request, AppDbContext db) =>
     {
         if (string.IsNullOrWhiteSpace(line))
             continue;
+
+        Console.WriteLine("Begin record");
         var values = line.Split(';');
 
         if (values.Length < 10)
             continue;
+
+        Console.WriteLine("Datum");
+        var datum = DateTime.Parse(values[0]);
+        
+        Console.WriteLine("Rekening");
+        var rekening = values[1];
+
+        Console.WriteLine("Categorie");
+        var categorie = values[2];
+
+        Console.WriteLine("Bedrag");
+        var bedrag = decimal.Parse(values[3].Replace(',', '.'),CultureInfo.InvariantCulture);
+        
+        Console.WriteLine("Transaction object");
 
         var transaction = new Transaction
         {
@@ -168,6 +184,8 @@ async (HttpRequest request, AppDbContext db) =>
                 DateTime.UtcNow
         };
 
+        Console.WriteLine("Add");
+
         if (!await db.Transactions
                      .AnyAsync(x =>
                          x.Id == transaction.Id))
@@ -176,6 +194,7 @@ async (HttpRequest request, AppDbContext db) =>
         }
     }
 
+    Console.WriteLine("SaveChanges");
     try{
         await db.SaveChangesAsync();
     }
@@ -183,6 +202,7 @@ async (HttpRequest request, AppDbContext db) =>
         return Results.BadRequest(ex.ToString());
     }
 
+    Console.WriteLine("Done");
     return Results.Ok();
     }
     catch (Exception ex){
