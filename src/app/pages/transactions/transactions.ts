@@ -89,8 +89,8 @@ export class TransactionsComponent {
 checkScreenSize(): void {
   this.isMobile = window.innerWidth < 768;
   if (!this.isMobile) {
-  this.showDetails = true;
-}
+    this.showDetails = true;
+  }
 }
 selectTransaction(transaction: TransactionsComponent): void {
   if (this.isMobile) {
@@ -101,9 +101,6 @@ selectTransaction(transaction: TransactionsComponent): void {
   setTimeout(() => {
     this.form.patchValue(transaction);
   });
-}
-back(): void {
-  this.showDetails = false;
 }
 createNew(): void {
   this.showDetails = true;
@@ -122,6 +119,9 @@ edit(): void {
 }
 
 cancel(): void {
+  if (this.isMobile) {
+    this.showDetails = false;
+  }
   this.mode = 'view';
   this.selectedTransaction = null;
   this.form.reset();
