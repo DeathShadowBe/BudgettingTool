@@ -1,10 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { TransactionService } from '../../services/transaction.service';
 
 @Component({
   selector: 'app-import-transactions',
+  standalone: true,
+  imports: [
+    ReactiveFormsModule,
+    MatMenuModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCardModule,
+    MatIconModule
+  ],
   templateUrl: './import-transactions.html',
-  styleUrls: ['./import-transactions.css']
+  styleUrls: ['./import-transactions.scss']
 })
 export class ImportTransactionsComponent {
 
