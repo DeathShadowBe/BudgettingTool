@@ -20,7 +20,9 @@ builder.Services.AddCors(options =>
             policy
                 .AllowAnyHeader()
                 .AllowAnyMethod()
-                .AllowAnyOrigin();
+                .WithOrigins(
+                    "https://budget.habitsolutions.be"
+                );
         });
 });
 
