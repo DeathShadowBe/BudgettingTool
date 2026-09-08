@@ -1,5 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 import { Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
@@ -21,6 +22,7 @@ import { Transaction } from '../../models/transaction';
   selector: 'app-transactions',
   standalone: true,
   imports: [
+    CommonModule,
     ReactiveFormsModule,
     MatToolbarModule,
     MatMenuModule,

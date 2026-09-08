@@ -18,31 +18,31 @@
 
   </button>
 
-</mat-toolbar>
+  </mat-toolbar>
 
-<mat-menu #profileMenu="matMenu">
+  <mat-menu #profileMenu="matMenu">
 
-  <button
-    mat-menu-item
-    (click)="openProfile()">
+    <button
+      mat-menu-item
+      (click)="openProfile()">
 
-    <mat-icon>person</mat-icon>
+      <mat-icon>person</mat-icon>
 
-    <span>Profiel</span>
+      <span>Profiel</span>
 
-  </button>
+    </button>
 
-  <button
-    mat-menu-item
-    (click)="logout()">
+    <button
+      mat-menu-item
+      (click)="logout()">
 
-    <mat-icon>logout</mat-icon>
+      <mat-icon>logout</mat-icon>
 
-    <span>Uitloggen</span>
+      <span>Uitloggen</span>
 
-  </button>
+    </button>
 
-</mat-menu>
+  </mat-menu>
 
   @if (!isMobile) {
 
@@ -57,7 +57,7 @@
 
     <mat-nav-list>
       <mat-list-item
-        *ngFor="let transaction of transactions"
+        *ngFor="let transaction of filteredTransactions"
         (click)="selectTransaction(transaction)">
 
         {{ transaction.datum | date:'dd/MM/yyyy' }}
