@@ -58,7 +58,7 @@
     <mat-nav-list>
 
       <mat-list-item
-        *ngFor="let transaction of filteredTransactions"
+        *ngFor="let transaction of transactions"
         (click)="selectTransaction(transaction)">
 
         {{ transaction.datum | date:'dd/MM/yyyy' }}
