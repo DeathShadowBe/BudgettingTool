@@ -98,6 +98,7 @@ selectTransaction(transaction: TransactionsComponent): void {
   }
   this.selectedTransaction = transaction;
   this.mode = 'view';
+  this.updateFormMode();
   setTimeout(() => {
     this.form.patchValue(transaction);
   });
@@ -106,6 +107,7 @@ createNew(): void {
   this.showDetails = true;
   this.selectedTransaction = null;
   this.mode = 'new';
+  this.updateFormMode();
   this.form.reset();
 }
 
@@ -116,6 +118,7 @@ logout(): void {
 
 edit(): void {
   this.mode = 'edit';
+  this.updateFormMode();
 }
 
 cancel(): void {
@@ -123,6 +126,7 @@ cancel(): void {
     this.showDetails = false;
   }
   this.mode = 'view';
+  this.updateFormMode();
   this.selectedTransaction = null;
   this.form.reset();
 }
@@ -134,6 +138,7 @@ submit(): void {
   }
 
   this.mode = 'view';
+  this.updateFormMode();
 }
 
 get filteredTransactions() {
@@ -148,9 +153,17 @@ get filteredTransactions() {
 }
 
 openProfile(): void {
-
   this.router.navigate(['/profile']);
+}
 
+updateFormMode(): void {
+  if (this.mode === 'view') {
+    this.form.get('project')?.disable();
+    this.form.get('intern')?.disable();
+  } else {
+    this.form.get('project')?.enable();
+    this.form.get('intern')?.enable();
+  }
 }
 
 get avatarLetter(): string {

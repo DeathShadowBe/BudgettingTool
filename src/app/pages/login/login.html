@@ -13,7 +13,9 @@
         <mat-label>Gebruikersnaam</mat-label>
         <input
           matInput
-          formControlName="username">
+          formControlName="username"
+          name="username"
+          autocomplete="username">
       </mat-form-field>
 
       <mat-form-field appearance="outline">
@@ -21,7 +23,9 @@
         <input
           matInput
           type="password"
-          formControlName="password">
+          formControlName="password"
+          name="password"
+          autocomplete="current-password">
       </mat-form-field>
 
       <button
