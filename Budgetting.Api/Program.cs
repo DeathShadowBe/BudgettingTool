@@ -98,6 +98,5 @@ async (
         user.Email
     });
 });
-``
 
 app.Run();
