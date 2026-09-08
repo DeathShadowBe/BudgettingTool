@@ -55,12 +55,7 @@
       <input matInput>
     </mat-form-field>
 
-    <div *ngFor="let transaction of filteredTransactions">
-      {{ transaction.tegenpartij }}
-    </div>
-
     <mat-nav-list>
-
       <mat-list-item
         *ngFor="let transaction of transactions"
         (click)="selectTransaction(transaction)">
@@ -70,19 +65,19 @@
         {{ transaction.tegenpartij }}
 
       </mat-list-item>
-
     </mat-nav-list>
+
     <button
-    mat-raised-button
-    color="primary"
-    class="new-button"
-    (click)="createNew()">
+      mat-raised-button
+      color="primary"
+      class="new-button"
+      (click)="createNew()">
 
-    Nieuw
+      Nieuw
 
-  </button>
-
+    </button>
   </div>
+</div>
 
   @if (selectedTransaction !== null || mode === 'new') {
  <div class="detail-panel">
