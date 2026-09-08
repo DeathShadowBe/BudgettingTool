@@ -2,6 +2,8 @@ export interface Transaction {
 
   id: string;
 
+  UserId: string;
+
   datum: string;
 
   rekening: string;

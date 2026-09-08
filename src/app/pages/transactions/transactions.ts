@@ -82,6 +82,8 @@ loadTransactions(): void {
 
         next: (transactions) => {
 
+          console.log(transactions);
+
           this.transactions =
             transactions;
 
@@ -94,7 +96,6 @@ loadTransactions(): void {
         }
 
       });
-
 }
 
 @HostListener('window:resize')
@@ -157,23 +158,22 @@ submit(): void {
 }
 
 get filteredTransactions() {
-    if (!this.searchText) {
-      return this.transactions;
-    }
-
-    const search =
-      this.searchText.toLowerCase();
-
-    return this.transactions.filter(t =>
-        t.tegenpartij?.toLowerCase()
-            .includes(search) ||
-        t.categorie?.toLowerCase()
-            .includes(search) ||
-        t.opmerking?.toLowerCase()
-            .includes(search)
-    );
-
+  if (!this.searchText) {
+    return this.transactions;
   }
+
+  const search =
+    this.searchText.toLowerCase();
+
+  return this.transactions.filter(t =>
+      t.tegenpartij?.toLowerCase()
+          .includes(search) ||
+      t.categorie?.toLowerCase()
+          .includes(search) ||
+      t.opmerking?.toLowerCase()
+          .includes(search)
+  );
+}
 
 openProfile(): void {
   this.router.navigate(['/profile']);
