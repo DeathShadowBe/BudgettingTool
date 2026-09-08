@@ -129,9 +129,6 @@ async (HttpRequest request, AppDbContext db) =>
 
         var transaction = new Transaction
         {
-            Id =
-                Guid.Parse(values[9]),
-
             UserId = userId,
 
             Datum =
