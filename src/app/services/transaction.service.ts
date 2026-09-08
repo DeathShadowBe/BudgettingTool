@@ -25,15 +25,14 @@ export class TransactionService {
   }
 
   importTransactions(
-    file: File
+    file: File,
+    userId: string
   ): Observable<any> {
 
     const formData = new FormData();
 
-    formData.append(
-      'file',
-      file
-    );
+    formData.append('file',file);
+    formData.append('userId', userId);
 
     return this.http.post(
       `${this.apiUrl}/transactions/import`,

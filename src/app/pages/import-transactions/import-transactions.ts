@@ -8,6 +8,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { TransactionService } from '../../services/transaction.service';
+import { AuthService } from '../../services/auth.service';
+
 
 @Component({
   selector: 'app-import-transactions',
@@ -31,7 +33,8 @@ export class ImportTransactionsComponent {
   uploading = false;
 
   constructor(
-    private transactionService: TransactionService
+    private transactionService: TransactionService,
+    private auth: AuthService
   ) {
   }
 
@@ -55,6 +58,8 @@ export class ImportTransactionsComponent {
 
   importCsv(): void {
 
+    const user = this.auth.getCurrentUser();
+
     if (!this.selectedFile) {
 
       alert(
@@ -68,7 +73,8 @@ export class ImportTransactionsComponent {
 
     this.transactionService
       .importTransactions(
-        this.selectedFile
+        this.selectedFile,
+        user.id
       )
       .subscribe({
 

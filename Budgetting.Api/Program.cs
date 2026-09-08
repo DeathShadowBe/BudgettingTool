@@ -51,6 +51,20 @@ async (AppDbContext db) =>
         .ToListAsync();
 });
 
+app.MapGet("/api/transactions/{userId}",
+async (
+    Guid userId,
+    AppDbContext db
+) =>
+{
+    return await db.Transactions
+        .Where(x => x.UserId == userId)
+        .OrderByDescending(x => x.Datum)
+        .ToListAsync();
+});
+
+
+
 app.MapPost("/api/auth/login",
     async (
         LoginRequest request,
@@ -84,6 +98,8 @@ async (HttpRequest request, AppDbContext db) =>
 
     var file = form.Files.FirstOrDefault();
 
+    var userId = Guid.Parse(form["userId"].ToString());
+
     if (file is null)
     {
         return Results.BadRequest("Geen bestand ontvangen.");
@@ -103,12 +119,19 @@ async (HttpRequest request, AppDbContext db) =>
 
     foreach (var line in lines.Skip(1))
     {
+        if (string.IsNullOrWhiteSpace(line))
+            continue;
         var values = line.Split(';');
+
+        if (values.Length < 10)
+            continue;
 
         var transaction = new Transaction
         {
             Id =
                 Guid.Parse(values[9]),
+
+            UserId = userId,
 
             Datum =
                 DateTime.Parse(values[0]),
@@ -128,10 +151,14 @@ async (HttpRequest request, AppDbContext db) =>
                 values[4],
 
             Intern =
-                values[5].ToUpper() == "TRUE",
+                values[5].Equals(
+                    "TRUE",
+                    StringComparison.OrdinalIgnoreCase),
 
             Project =
-                values[6].ToUpper() == "TRUE",
+                values[6].Equals(
+                    "TRUE",
+                    StringComparison.OrdinalIgnoreCase),
 
             Tegenpartij =
                 values[7],
@@ -151,7 +178,12 @@ async (HttpRequest request, AppDbContext db) =>
         }
     }
 
-    await db.SaveChangesAsync();
+    try{
+        await db.SaveChangesAsync();
+    }
+    catch (Exception ex){
+        return Results.BadRequest(ex.ToString())
+    }
 
     return Results.Ok();
 });

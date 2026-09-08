@@ -4,7 +4,7 @@ public class Transaction
 {
     public Guid Id { get; set; }
 
-    public Guid? UserId { get; set; }
+    public Guid UserId { get; set; }
 
     public DateTime Datum { get; set; }
 
