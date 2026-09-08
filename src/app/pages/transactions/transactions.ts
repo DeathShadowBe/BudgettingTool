@@ -1,5 +1,5 @@
 import { Component, HostListener } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 import { Router } from '@angular/router';
@@ -17,6 +17,7 @@ import { MatCardModule } from '@angular/material/card';
 import { AuthService } from '../../services/auth.service';
 import { TransactionService } from '../../services/transaction.service';
 import { Transaction } from '../../models/transaction';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-transactions',
@@ -33,7 +34,9 @@ import { Transaction } from '../../models/transaction';
     MatListModule,
     MatCardModule,
     MatIconModule,
-    MatTooltipModule
+    MatTooltipModule,
+    FormsModule,
+    MatPaginatorModule
   ],
   templateUrl: './transactions.html',
   styleUrl: './transactions.css'
@@ -47,6 +50,9 @@ export class TransactionsComponent {
   mode: 'view' | 'edit' | 'new' = 'view';
   selectedTransaction: TransactionsComponent | null = null;
   searchText = '';
+  pageSize = 25;
+  pageIndex = 0;
+
   
   constructor(private fb: FormBuilder,
       private auth: AuthService,
@@ -174,6 +180,17 @@ get filteredTransactions() {
           .includes(search) ||
       t.opmerking?.toLowerCase()
           .includes(search)
+  );
+}
+
+get pagedTransactions() {
+
+  const start =
+    this.pageIndex * this.pageSize;
+
+  return this.filteredTransactions.slice(
+    start,
+    start + this.pageSize
   );
 }
 
