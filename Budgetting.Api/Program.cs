@@ -43,6 +43,14 @@ app.MapGet("/api/users", async (AppDbContext db) =>
     return await db.Users.ToListAsync();
 });
 
+app.MapGet("/api/transactions",
+async (AppDbContext db) =>
+{
+    return await db.Transactions
+        .OrderByDescending(x => x.Datum)
+        .ToListAsync();
+});
+
 app.MapPost("/api/auth/login",
     async (
         LoginRequest request,

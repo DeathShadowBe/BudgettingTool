@@ -3,14 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { Transaction } from '../models/transaction';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TransactionService {
 
-  private apiUrl =
-    'https://budgetting-api-f8bpe9hpdxc5f9ec.westeurope-01.azurewebsites.net/api';
+  private apiUrl = `${environment.apiUrl}`;
 
   constructor(
     private http: HttpClient
