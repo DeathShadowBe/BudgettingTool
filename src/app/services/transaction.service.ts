@@ -16,10 +16,12 @@ export class TransactionService {
     private http: HttpClient
   ) {}
 
-  getTransactions(): Observable<Transaction[]> {
+  getTransactions(
+    userId: string
+  ) {
 
     return this.http.get<Transaction[]>(
-      `${this.apiUrl}/transactions`
+      `${this.apiUrl}/transactions/${userId}`
     );
 
   }

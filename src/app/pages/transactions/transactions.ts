@@ -14,6 +14,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { AuthService } from '../../services/auth.service';
+import { TransactionService } from '../../services/transaction.service';
+import { Transaction } from '../../models/transaction';
 
 @Component({
   selector: 'app-transactions',
@@ -43,28 +45,11 @@ export class TransactionsComponent {
   mode: 'view' | 'edit' | 'new' = 'view';
   selectedTransaction: TransactionsComponent | null = null;
   searchText = '';
-
-  transactions = [
-    {
-    id: '1',
-    datum: '01/09/2026',
-    tegenpartij: 'Carrefour'
-    },
-    {
-    id: '2',
-    datum: '31/08/2026',
-    tegenpartij: 'Q8'
-    },
-    {
-    id: '3',
-    datum: '30/08/2026',
-    tegenpartij: 'Restaurant'
-    }
-  ];
   
   constructor(private fb: FormBuilder,
       private auth: AuthService,
-      private router: Router) {
+      private router: Router,
+      private transactionService: TransactionService) {
 
     this.checkScreenSize();
 
@@ -80,6 +65,36 @@ export class TransactionsComponent {
       intern: [false],
       id: ['']
     });
+}
+transactions: Transaction[] = [];
+
+ngOnInit(): void {
+  this.loadTransactions();
+}
+
+loadTransactions(): void {
+  const user =
+    this.auth.getCurrentUser();
+
+  this.transactionService
+      .getTransactions(user.id)
+      .subscribe({
+
+        next: (transactions) => {
+
+          this.transactions =
+            transactions;
+
+        },
+
+        error: (error) => {
+
+          console.error(error);
+
+        }
+
+      });
+
 }
 
 @HostListener('window:resize')
@@ -142,15 +157,23 @@ submit(): void {
 }
 
 get filteredTransactions() {
+    if (!this.searchText) {
+      return this.transactions;
+    }
 
-  const search = this.searchText.toLowerCase();
+    const search =
+      this.searchText.toLowerCase();
 
-  return this.transactions.filter(t =>
-    t.id?.toLowerCase().includes(search) ||
-    t.datum?.toLowerCase().includes(search) ||
-    t.tegenpartij?.toLowerCase().includes(search)
-  );
-}
+    return this.transactions.filter(t =>
+        t.tegenpartij?.toLowerCase()
+            .includes(search) ||
+        t.categorie?.toLowerCase()
+            .includes(search) ||
+        t.opmerking?.toLowerCase()
+            .includes(search)
+    );
+
+  }
 
 openProfile(): void {
   this.router.navigate(['/profile']);
