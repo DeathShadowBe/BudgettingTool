@@ -153,6 +153,7 @@ checkScreenSize(): void {
     this.showDetails = true;
   }
 }
+
 selectTransaction(transaction: TransactionsComponent): void {
   if (this.isMobile) {
     this.showDetails = true;
@@ -164,6 +165,7 @@ selectTransaction(transaction: TransactionsComponent): void {
   });
   this.updateFormMode();
 }
+
 createNew(): void {
   if (this.isMobile) {
     this.showDetails = true;
@@ -215,6 +217,16 @@ submit(): void {
   if (this.mode === 'new') {
     delete transaction.id;
   }
+
+  const localDate = new Date(transaction.datum);
+
+  transaction.datum = new Date(
+    Date.UTC(
+      localDate.getFullYear(),
+      localDate.getMonth(),
+      localDate.getDate()
+    )
+  );
 
   const user =
     this.auth.getCurrentUser();

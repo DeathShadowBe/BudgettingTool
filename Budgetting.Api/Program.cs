@@ -95,6 +95,7 @@ async (
     AppDbContext db
 ) =>
 {
+    
     transaction.CreatedAt = DateTime.UtcNow;
 
     db.Transactions.Add(transaction);
