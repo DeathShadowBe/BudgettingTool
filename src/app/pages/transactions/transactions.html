@@ -92,10 +92,17 @@
  <div class="detail-panel">
 
   <form [formGroup]="form">
-
     <mat-form-field appearance="outline">
       <mat-label>Datum</mat-label>
-      <input [matDatepicker]="datumPicker" formControlName="datum">
+      <input
+        matInput
+        [matDatepicker]="datumPicker"
+        formControlName="datum">
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="datumPicker">
+      </mat-datepicker-toggle>
+      <mat-datepicker #datumPicker></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
@@ -259,7 +266,15 @@
 
     <mat-form-field appearance="outline">
       <mat-label>Datum</mat-label>
-      <input [matDatepicker]="datumPicker" formControlName="datum">
+      <input
+        matInput
+        [matDatepicker]="datumPicker"
+        formControlName="datum">
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="datumPicker">
+      </mat-datepicker-toggle>
+      <mat-datepicker #datumPicker></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field appearance="outline">

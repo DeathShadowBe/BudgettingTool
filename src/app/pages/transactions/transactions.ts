@@ -88,11 +88,11 @@ export class TransactionsComponent {
     'Dividend',
     'Cash',
     'Inkomst'
-  ];
+  ].sort();
 
   types = [
-    'Inkomst',
     'Uitgave',
+    'Inkomst',
     'Opbouw',
     'Terugname'
   ];
