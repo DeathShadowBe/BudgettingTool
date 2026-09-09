@@ -106,6 +106,41 @@ async (
     return Results.Ok(transaction);
 });
 
+app.MapPut("/api/transactions/{id}",
+async (
+    Guid id,
+    Transaction request,
+    AppDbContext db
+) =>
+{
+    var transaction =
+        await db.Transactions
+            .FirstOrDefaultAsync(
+                x => x.Id == id);
+
+    if (transaction is null)
+    {
+        return Results.NotFound();
+    }
+
+    transaction.Datum = request.Datum;
+    transaction.Rekening = request.Rekening;
+    transaction.Categorie = request.Categorie;
+    transaction.Bedrag = request.Bedrag;
+    transaction.Type = request.Type;
+    transaction.Intern = request.Intern;
+    transaction.Project = request.Project;
+    transaction.Tegenpartij = request.Tegenpartij;
+    transaction.Opmerking = request.Opmerking;
+
+    transaction.UpdatedAt =
+        DateTime.UtcNow;
+
+    await db.SaveChangesAsync();
+
+    return Results.Ok(transaction);
+});
+
 app.MapPost("/api/transactions/import",
 async (HttpRequest request, AppDbContext db) =>
 {

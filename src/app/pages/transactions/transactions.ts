@@ -208,7 +208,7 @@ submit(): void {
   if (this.form.invalid) {
     return;
   }
-  
+
   const transaction =
     this.form.getRawValue();
 
@@ -217,29 +217,46 @@ submit(): void {
 
   transaction.userId = user.id;
 
-  this.transactionService
+  if (this.mode === 'new') {
+
+    this.transactionService
       .createTransaction(transaction)
       .subscribe({
 
         next: () => {
 
-          alert('Transactie opgeslagen');
+          alert('Transactie toegevoegd');
 
           this.loadTransactions();
 
           this.showDetails = false;
 
-        },
+        }
 
-        error: (error) => {
+      });
 
-          console.error(error);
+  }
+  else {
 
-          alert('Opslaan mislukt');
+    this.transactionService
+      .updateTransaction(transaction)
+      .subscribe({
+
+        next: () => {
+
+          alert('Transactie bijgewerkt');
+
+          this.loadTransactions();
+
+          this.mode = 'view';
+
+          this.updateFormMode();
 
         }
 
       });
+
+  }
 
   this.mode = 'view';
   this.updateFormMode();

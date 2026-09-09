@@ -51,5 +51,17 @@ export class TransactionService {
       `${this.apiUrl}/transactions`,
       transaction
     );
+
+  }
+
+  updateTransaction(
+    transaction: Transaction
+  ) {
+
+    return this.http.put(
+      `${this.apiUrl}/transactions/${transaction.id}`,
+      transaction
+    );
+
   }
 }
