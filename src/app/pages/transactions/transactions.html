@@ -95,49 +95,60 @@
 
     <mat-form-field appearance="outline">
       <mat-label>Datum</mat-label>
-      <input matInput formControlName="datum"
-      [readonly]="mode === 'view'">
+      <input [matDatepicker]="datumPicker" formControlName="datum">
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Tegenpartij</mat-label>
-      <input matInput formControlName="tegenpartij"
-      [readonly]="mode === 'view'">
+      <input matInput formControlName="tegenpartij">
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Bedrag</mat-label>
-      <input matInput formControlName="bedrag"
-      [readonly]="mode === 'view'">
+      <input matInput formControlName="bedrag">
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Categorie</mat-label>
-      <input matInput formControlName="categorie"
-      [readonly]="mode === 'view'">
-    </mat-form-field>
+      <mat-select formControlName="categorie">
+        <mat-option
+          *ngFor="let categorie of categorieen"
+          [value]="categorie">
+          {{ categorie }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field> 
 
     <mat-form-field appearance="outline">
       <mat-label>Rekening</mat-label>
-      <input matInput formControlName="rekening"
-      [readonly]="mode === 'view'">
-    </mat-form-field>
+      <mat-select formControlName="rekening">
+        <mat-option
+          *ngFor="let rekening of rekeningen"
+          [value]="rekening">
+          {{ rekening }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>   
 
     <mat-form-field appearance="outline">
       <mat-label>Opmerking</mat-label>
       <textarea
         matInput
         rows="3"
-        formControlName="opmerking"
-        [readonly]="mode === 'view'">
+        formControlName="opmerking">
       </textarea>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Type</mat-label>
-      <input matInput formControlName="type"
-      [readonly]="mode === 'view'">
-    </mat-form-field>
+      <mat-select formControlName="type">
+        <mat-option
+          *ngFor="let type of types"
+          [value]="type">
+          {{ type }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field> 
 
     <mat-checkbox formControlName="project">
       Project
@@ -146,13 +157,6 @@
     <mat-checkbox formControlName="intern">
       Intern
     </mat-checkbox>
-
-    <mat-form-field appearance="outline">
-      <mat-label>ID</mat-label>
-      <input matInput formControlName="id"
-      readonly
-      disabled>
-    </mat-form-field>
 
     <div class="bottom-buttons">
 
@@ -255,49 +259,60 @@
 
     <mat-form-field appearance="outline">
       <mat-label>Datum</mat-label>
-      <input matInput formControlName="datum"
-      [readonly]="mode === 'view'">
+      <input [matDatepicker]="datumPicker" formControlName="datum">
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Tegenpartij</mat-label>
-      <input matInput formControlName="tegenpartij"
-      [readonly]="mode === 'view'">
+      <input matInput formControlName="tegenpartij">
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Bedrag</mat-label>
-      <input matInput formControlName="bedrag"
-      [readonly]="mode === 'view'">
+      <input matInput formControlName="bedrag">
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Categorie</mat-label>
-      <input matInput formControlName="categorie"
-      [readonly]="mode === 'view'">
-    </mat-form-field>
+      <mat-select formControlName="categorie">
+        <mat-option
+          *ngFor="let categorie of categorieen"
+          [value]="categorie">
+          {{ categorie }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field> 
 
     <mat-form-field appearance="outline">
       <mat-label>Rekening</mat-label>
-      <input matInput formControlName="rekening"
-      [readonly]="mode === 'view'">
-    </mat-form-field>
+      <mat-select formControlName="rekening">
+        <mat-option
+          *ngFor="let rekening of rekeningen"
+          [value]="rekening">
+          {{ rekening }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>   
 
     <mat-form-field appearance="outline">
       <mat-label>Opmerking</mat-label>
       <textarea
         matInput
         rows="3"
-        formControlName="opmerking"
-        [readonly]="mode === 'view'">
+        formControlName="opmerking">
       </textarea>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Type</mat-label>
-      <input matInput formControlName="type"
-      [readonly]="mode === 'view'">
-    </mat-form-field>
+      <mat-select formControlName="type">
+        <mat-option
+          *ngFor="let type of types"
+          [value]="type">
+          {{ type }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field> 
 
     <mat-checkbox formControlName="project">
       Project
@@ -306,13 +321,6 @@
     <mat-checkbox formControlName="intern">
       Intern
     </mat-checkbox>
-
-    <mat-form-field appearance="outline">
-      <mat-label>ID</mat-label>
-      <input matInput formControlName="id"
-      readonly
-      disabled>
-    </mat-form-field>
 
     <div class="bottom-buttons">
 

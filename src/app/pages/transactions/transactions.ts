@@ -12,12 +12,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { AuthService } from '../../services/auth.service';
 import { TransactionService } from '../../services/transaction.service';
 import { Transaction } from '../../models/transaction';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-transactions',
@@ -36,7 +39,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatIconModule,
     MatTooltipModule,
     FormsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule
   ],
   templateUrl: './transactions.html',
   styleUrl: './transactions.css'
@@ -52,6 +58,44 @@ export class TransactionsComponent {
   searchText = '';
   pageSize = 25;
   pageIndex = 0;
+
+  rekeningen = [
+    'Prive',
+    'VISA',
+    'Gezamelijk'
+  ];
+
+  categorieen = [
+    'Boodschappen',
+    'Loon',
+    'Wonen',
+    'Verzekeringen',
+    'Shopping',
+    'Sparen',
+    'Vrije Tijd',
+    'Diensten',
+    'Nutsvoorzieningen',
+    'Zorg en Welzijn',
+    'Bar & Resto',
+    'Terugbetaling',
+    'Andere',
+    'Eigen Rekening',
+    'Overheid',
+    'Huur',
+    'Financieel',
+    'Mobiliteit',
+    'Onderwijs',
+    'Dividend',
+    'Cash',
+    'Inkomst'
+  ];
+
+  types = [
+    'Inkomst',
+    'Uitgave',
+    'Opbouw',
+    'Terugname'
+  ];
 
   
   constructor(private fb: FormBuilder,
@@ -203,13 +247,33 @@ importTransactions(): void {
 }
 
 updateFormMode(): void {
+
+  const controls = [
+    'datum',
+    'rekening',
+    'categorie',
+    'type',
+    'bedrag',
+    'tegenpartij',
+    'opmerking',
+    'project',
+    'intern'
+  ];
+
   if (this.mode === 'view') {
-    this.form.get('project')?.disable();
-    this.form.get('intern')?.disable();
+
+    controls.forEach(control =>
+      this.form.get(control)?.disable()
+    );
+
   } else {
-    this.form.get('project')?.enable();
-    this.form.get('intern')?.enable();
+
+    controls.forEach(control =>
+      this.form.get(control)?.enable()
+    );
+
   }
+
 }
 
 get avatarLetter(): string {
