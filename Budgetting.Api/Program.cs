@@ -91,6 +91,21 @@ app.MapPost("/api/auth/login",
     });
 });
 
+app.MapPost("/api/transactions",
+async (
+    Transaction transaction,
+    AppDbContext db
+) =>
+{
+    transaction.CreatedAt = DateTime.UtcNow;
+
+    db.Transactions.Add(transaction);
+
+    await db.SaveChangesAsync();
+
+    return Results.Ok(transaction);
+});
+
 app.MapPost("/api/transactions/import",
 async (HttpRequest request, AppDbContext db) =>
 {

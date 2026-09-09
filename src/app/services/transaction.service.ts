@@ -43,4 +43,13 @@ export class TransactionService {
 
   }
 
+  createTransaction(
+    transaction: Transaction
+  ) {
+
+    return this.http.post(
+      `${this.apiUrl}/transactions`,
+      transaction
+    );
+  }
 }

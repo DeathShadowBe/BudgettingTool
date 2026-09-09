@@ -161,10 +161,10 @@ selectTransaction(transaction: TransactionsComponent): void {
   this.selectedTransaction = transaction;
   this.mode = 'view';
   setTimeout(() => {
-    console.log('PATCH TRANSACTION');
     this.form.patchValue(transaction);
   });
   this.updateFormMode();
+  console.log(this.form.getRawValue());
 }
 createNew(): void {
   if (this.isMobile) {
@@ -173,10 +173,10 @@ createNew(): void {
   this.selectedTransaction = null;
   this.mode = 'new';
   this.form.reset();
-  console.log('NEW');
   setTimeout(() => {
     this.form.patchValue({
       datum: new Date(),
+      rekening: 'Prive',
       type: 'Uitgave',
       project: false,
       intern: false
@@ -210,6 +210,38 @@ submit(): void {
   if (this.form.invalid) {
     return;
   }
+  
+  const transaction =
+    this.form.getRawValue();
+
+  const user =
+    this.auth.getCurrentUser();
+
+  transaction.userId = user.id;
+
+  this.transactionService
+      .createTransaction(transaction)
+      .subscribe({
+
+        next: () => {
+
+          alert('Transactie opgeslagen');
+
+          this.loadTransactions();
+
+          this.showDetails = false;
+
+        },
+
+        error: (error) => {
+
+          console.error(error);
+
+          alert('Opslaan mislukt');
+
+        }
+
+      });
 
   this.mode = 'view';
   this.updateFormMode();
