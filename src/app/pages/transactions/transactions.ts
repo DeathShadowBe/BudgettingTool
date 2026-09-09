@@ -51,7 +51,7 @@ export class TransactionsComponent {
 
   isMobile = false;
   showDetails = false;
-  username  = '';
+  user: any;
   form!: FormGroup;
   mode: 'view' | 'edit' | 'new' = 'view';
   selectedTransaction: TransactionsComponent | null = null;
@@ -125,11 +125,10 @@ ngOnInit(): void {
 }
 
 loadTransactions(): void {
-  const user =
-    this.auth.getCurrentUser();
+  this.user = this.auth.getCurrentUser();
 
   this.transactionService
-      .getTransactions(user.id)
+      .getTransactions(this.user.id)
       .subscribe({
 
         next: (transactions) => {
@@ -164,7 +163,6 @@ selectTransaction(transaction: TransactionsComponent): void {
     this.form.patchValue(transaction);
   });
   this.updateFormMode();
-  console.log(this.form.getRawValue());
 }
 createNew(): void {
   if (this.isMobile) {
