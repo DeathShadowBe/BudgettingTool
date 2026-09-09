@@ -175,8 +175,14 @@ createNew(): void {
   this.showDetails = true;
   this.selectedTransaction = null;
   this.mode = 'new';
-  this.updateFormMode();
   this.form.reset();
+  this.form.patchValue({
+    datum: new Date(),
+    type: 'Uitgave',
+    project: false,
+    intern: false
+  });
+  this.updateFormMode();
 }
 
 logout(): void {
