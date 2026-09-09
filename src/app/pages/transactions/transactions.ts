@@ -212,6 +212,10 @@ submit(): void {
   const transaction =
     this.form.getRawValue();
 
+  if (this.mode === 'new') {
+    delete transaction.id;
+  }
+
   const user =
     this.auth.getCurrentUser();
 
@@ -229,8 +233,13 @@ submit(): void {
 
           this.loadTransactions();
 
-          this.showDetails = false;
+          if (this.isMobile) {
+            this.showDetails = false;
+          }
 
+          this.mode = 'view';
+
+          this.updateFormMode();
         }
 
       });
@@ -257,9 +266,6 @@ submit(): void {
       });
 
   }
-
-  this.mode = 'view';
-  this.updateFormMode();
 }
 
 get filteredTransactions() {

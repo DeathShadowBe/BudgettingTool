@@ -63,8 +63,6 @@ async (
         .ToListAsync();
 });
 
-
-
 app.MapPost("/api/auth/login",
     async (
         LoginRequest request,
