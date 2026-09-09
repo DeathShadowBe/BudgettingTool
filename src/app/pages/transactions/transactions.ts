@@ -172,9 +172,12 @@ selectTransaction(transaction: TransactionsComponent): void {
   });
 }
 createNew(): void {
-  this.showDetails = true;
+  if (this.isMobile) {
+    this.showDetails = true;
+  }
   this.selectedTransaction = null;
   this.mode = 'new';
+  console.log(this.form.getRawValue());
   this.form.reset();
   this.form.patchValue({
     datum: new Date(),
@@ -182,7 +185,9 @@ createNew(): void {
     project: false,
     intern: false
   });
+  console.log(this.form.getRawValue());
   this.updateFormMode();
+  console.log(this.form.getRawValue());
 }
 
 logout(): void {
