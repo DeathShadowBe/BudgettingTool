@@ -166,10 +166,11 @@ selectTransaction(transaction: TransactionsComponent): void {
   }
   this.selectedTransaction = transaction;
   this.mode = 'view';
-  this.updateFormMode();
   setTimeout(() => {
+    console.log('PATCH TRANSACTION');
     this.form.patchValue(transaction);
   });
+  this.updateFormMode();
 }
 createNew(): void {
   if (this.isMobile) {
@@ -177,17 +178,15 @@ createNew(): void {
   }
   this.selectedTransaction = null;
   this.mode = 'new';
-  console.log(this.form.getRawValue());
   this.form.reset();
+  console.log('NEW');
   this.form.patchValue({
     datum: new Date(),
     type: 'Uitgave',
     project: false,
     intern: false
   });
-  console.log(this.form.getRawValue());
   this.updateFormMode();
-  console.log(this.form.getRawValue());
 }
 
 logout(): void {
