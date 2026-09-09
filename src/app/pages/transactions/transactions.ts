@@ -133,18 +133,12 @@ loadTransactions(): void {
       .subscribe({
 
         next: (transactions) => {
-
-          console.log(transactions);
-
           this.transactions =
             transactions;
 
         },
-
         error: (error) => {
-
           console.error(error);
-
         }
 
       });
@@ -180,11 +174,13 @@ createNew(): void {
   this.mode = 'new';
   this.form.reset();
   console.log('NEW');
-  this.form.patchValue({
-    datum: new Date(),
-    type: 'Uitgave',
-    project: false,
-    intern: false
+  setTimeout(() => {
+    this.form.patchValue({
+      datum: new Date(),
+      type: 'Uitgave',
+      project: false,
+      intern: false
+    });
   });
   this.updateFormMode();
 }
