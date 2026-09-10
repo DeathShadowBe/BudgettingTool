@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
 
 import { BaseChartDirective } from 'ng2-charts';
 
@@ -23,7 +24,8 @@ import { AuthService } from '../../../services/auth.service';
     BaseChartDirective,
     MatCardModule,
     MatFormFieldModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTableModule
   ],
   templateUrl: './leefbudget-dashboard.html',
   styleUrl: './leefbudget-dashboard.scss'
@@ -37,6 +39,34 @@ export class LeefbudgetDashboardComponent implements OnInit {
   selectedMonth = '';
 
   selectedCategory?: string;
+
+  categoryChartOptions = {
+
+    responsive: true,
+
+    maintainAspectRatio: false,
+
+    plugins: {
+
+      legend: {
+        display: false
+      }
+
+    },
+
+    scales: {
+
+      y: {
+
+        beginAtZero: true,
+
+        max: 100
+
+      }
+
+    }
+
+  };
 
   gaugeOptions = {
 
@@ -59,6 +89,20 @@ export class LeefbudgetDashboardComponent implements OnInit {
     cutout: '70%'
 
   };
+
+  categorieColumns = [
+    'categorie',
+    'bedrag',
+    'percentage'
+  ];
+
+  detailColumns = [
+    'bedrag',
+    'categorie',
+    'tegenpartij',
+    'opmerking',
+    'project'
+  ];
 
   constructor(
     private auth: AuthService,
@@ -157,6 +201,76 @@ export class LeefbudgetDashboardComponent implements OnInit {
             '#E0E0E0'
           ]
         }
+      ]
+
+    };
+
+  }
+
+  get categorieOverzicht() {
+
+    const result: Record<string, number> = {};
+
+    this.monthTransactions
+      .forEach(transaction => {
+
+        if (!result[transaction.categorie]) {
+
+          result[transaction.categorie] = 0;
+
+        }
+
+        result[transaction.categorie] +=
+          transaction.bedrag;
+
+      });
+
+    return Object
+      .entries(result)
+      .map(x => ({
+
+        categorie: x[0],
+
+        bedrag: x[1],
+
+        percentage:
+          this.leefuitgaven === 0
+            ? 0
+            : (x[1] / this.leefuitgaven) * 100
+
+      }))
+      .sort(
+        (a, b) => b.bedrag - a.bedrag
+      );
+
+  }
+
+  get categoryChartData() {
+
+    return {
+
+      labels:
+        this.categorieOverzicht
+          .map(x => x.categorie),
+
+      datasets: [
+
+        {
+
+          label:
+            'Leefbudget %',
+
+          data:
+            this.categorieOverzicht
+              .map(
+                x => x.percentage
+              ),
+
+          backgroundColor:
+            '#4CAF50'
+
+        }
+
       ]
 
     };

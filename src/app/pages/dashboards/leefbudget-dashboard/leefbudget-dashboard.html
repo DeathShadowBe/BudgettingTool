@@ -76,4 +76,248 @@
 
   </div>
 
+  <div class="analytics-row">
+
+    <!-- Totals Table -->
+
+    <mat-card>
+
+      <mat-card-title>
+        Leefbudget per categorie
+      </mat-card-title>
+
+      <table
+        mat-table
+        [dataSource]="categorieOverzicht">
+
+        <!-- categorie -->
+
+        <ng-container matColumnDef="categorie">
+
+          <th
+            mat-header-cell
+            *matHeaderCellDef>
+
+            Categorie
+
+          </th>
+
+          <td
+            mat-cell
+            *matCellDef="let row">
+
+            {{ row.categorie }}
+
+          </td>
+
+        </ng-container>
+
+        <!-- bedrag -->
+
+        <ng-container matColumnDef="bedrag">
+
+          <th
+            mat-header-cell
+            *matHeaderCellDef>
+
+            Bedrag
+
+          </th>
+
+          <td
+            mat-cell
+            *matCellDef="let row">
+
+            {{ row.bedrag | currency:'EUR' }}
+
+          </td>
+
+        </ng-container>
+
+        <!-- percentage -->
+
+        <ng-container matColumnDef="percentage">
+
+          <th
+            mat-header-cell
+            *matHeaderCellDef>
+
+            %
+
+          </th>
+
+          <td
+            mat-cell
+            *matCellDef="let row">
+
+            {{ row.percentage | number:'1.0-1' }}%
+
+          </td>
+
+        </ng-container>
+
+        <tr
+          mat-header-row
+          *matHeaderRowDef="categorieColumns">
+        </tr>
+
+        <tr
+          mat-row
+          *matRowDef="
+            let row;
+            columns: categorieColumns
+          ">
+        </tr>
+
+      </table>
+
+    </mat-card>
+
+    <!-- Bar Chart -->
+
+    <mat-card>
+
+      <mat-card-title>
+        Verdeling Leefbudget
+      </mat-card-title>
+
+      <canvas
+        baseChart
+        [type]="'bar'"
+        [data]="categoryChartData"
+        [options]="categoryChartOptions">
+      </canvas>
+
+    </mat-card>
+
+  </div>
+
+  <mat-card class="detail-card">
+
+    <mat-card-title>
+
+      Detail transacties
+
+    </mat-card-title>
+
+    <table
+      mat-table
+      [dataSource]="monthTransactions">
+
+      <ng-container matColumnDef="bedrag">
+
+        <th
+          mat-header-cell
+          *matHeaderCellDef>
+
+          Bedrag
+
+        </th>
+
+        <td
+          mat-cell
+          *matCellDef="let row">
+
+          {{ row.bedrag | currency:'EUR' }}
+
+        </td>
+
+      </ng-container>
+
+      <ng-container matColumnDef="categorie">
+
+        <th
+          mat-header-cell
+          *matHeaderCellDef>
+
+          Categorie
+
+        </th>
+
+        <td
+          mat-cell
+          *matCellDef="let row">
+
+          {{ row.categorie }}
+
+        </td>
+
+      </ng-container>
+
+      <ng-container matColumnDef="tegenpartij">
+
+        <th
+          mat-header-cell
+          *matHeaderCellDef>
+
+          Tegenpartij
+
+        </th>
+
+        <td
+          mat-cell
+          *matCellDef="let row">
+
+          {{ row.tegenpartij }}
+
+        </td>
+
+      </ng-container>
+
+      <ng-container matColumnDef="opmerking">
+
+        <th
+          mat-header-cell
+          *matHeaderCellDef>
+
+          Opmerking
+
+        </th>
+
+        <td
+          mat-cell
+          *matCellDef="let row">
+
+          {{ row.opmerking }}
+
+        </td>
+
+      </ng-container>
+
+      <ng-container matColumnDef="project">
+
+        <th
+          mat-header-cell
+          *matHeaderCellDef>
+
+          Project
+
+        </th>
+
+        <td
+          mat-cell
+          *matCellDef="let row">
+
+          {{ row.project ? 'Ja' : 'Nee' }}
+
+        </td>
+
+      </ng-container>
+
+      <tr
+        mat-header-row
+        *matHeaderRowDef="detailColumns">
+      </tr>
+
+      <tr
+        mat-row
+        *matRowDef="
+          let row;
+          columns: detailColumns
+        ">
+      </tr>
+
+    </table>
+
+  </mat-card>
 </div>

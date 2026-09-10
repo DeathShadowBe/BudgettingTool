@@ -55,3 +55,26 @@
   margin: 0 auto;
 
 }
+
+.analytics-row {
+
+  display: grid;
+
+  grid-template-columns:
+    1fr 1.5fr;
+
+  gap: 20px;
+
+}
+
+.detail-card {
+
+  margin-top: 20px;
+
+}
+
+table {
+
+  width: 100%;
+
+}
