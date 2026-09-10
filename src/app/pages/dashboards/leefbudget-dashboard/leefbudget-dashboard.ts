@@ -23,12 +23,10 @@ import { AuthService } from '../../../services/auth.service';
 
     MatCardModule,
     MatFormFieldModule,
-    MatSelectModule,
-
-    BaseChartDirective
+    MatSelectModule
   ],
   templateUrl: './leefbudget-dashboard.html',
-  styleUrl: './leefbudget-dashboard.css'
+  styleUrl: './leefbudget-dashboard.scss'
 })
 export class LeefbudgetDashboardComponent implements OnInit {
 
