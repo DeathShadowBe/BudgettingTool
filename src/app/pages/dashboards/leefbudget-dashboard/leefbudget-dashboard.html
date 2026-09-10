@@ -59,12 +59,13 @@
 
     <mat-card class="kpi-card">
 
-      <canvas
-        baseChart
-        [type]="'doughnut'"        
-        [data]="gaugeData">
-      </canvas>
-
+      <div class="gauge-wrapper">
+        <canvas
+          baseChart
+          [type]="'doughnut'"        
+          [data]="gaugeData">
+        </canvas>
+      </div>
       <h2>
         {{ leefbudgetPercentage | number:'1.0-0' }}%
       </h2>

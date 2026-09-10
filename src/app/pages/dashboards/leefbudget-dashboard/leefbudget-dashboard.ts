@@ -38,6 +38,28 @@ export class LeefbudgetDashboardComponent implements OnInit {
 
   selectedCategory?: string;
 
+  gaugeOptions = {
+
+    responsive: true,
+
+    maintainAspectRatio: false,
+
+    plugins: {
+
+      legend: {
+        display: false
+      },
+
+      tooltip: {
+        enabled: false
+      }
+
+    },
+
+    cutout: '70%'
+
+  };
+
   constructor(
     private auth: AuthService,
     private transactionService: TransactionService,

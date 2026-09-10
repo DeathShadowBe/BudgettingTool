@@ -30,12 +30,28 @@
 
   text-align: center;
 
-  padding: 20px;
+  height: 140px;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
 
 }
 
 .kpi-card h2 {
 
   margin-bottom: 10px;
+
+}
+
+.gauge-wrapper {
+
+  position: relative;
+
+  width: 80px;
+  height: 80px;
+
+  margin: 0 auto;
 
 }
