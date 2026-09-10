@@ -1,25 +1,25 @@
 .top-bar {
-
-  display: flex;
-
+    display: flex;
   justify-content: space-between;
-
   align-items: center;
 
-  padding: 12px 20px;
+  width: 100%;
+  min-width: 220px;
+  padding: 12px 16px;
 
-  background: #0f172a;
-
-  color: white;
-
+  font-weight: 500;
 }
 
 .welcome {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-  font-size: 24px;
+  width: 100%;
+  min-width: 220px;
+  padding: 12px 16px;
 
-  font-weight: 600;
-
+  font-weight: 500;
 }
 
 .avatar {
@@ -36,6 +36,14 @@
   justify-content: center;
 
   font-weight: 700;
+}
+
+.logout-button {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
 }
 
 .dashboard-content {

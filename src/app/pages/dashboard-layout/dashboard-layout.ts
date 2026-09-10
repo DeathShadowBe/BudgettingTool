@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterOutlet, RouterLink } from '@angular/router';
-
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard-layout',
@@ -12,9 +13,9 @@ import { AuthService } from '../../services/auth.service';
   imports: [
     RouterOutlet,
     RouterLink,
-
     MatMenuModule,
-    MatButtonModule
+    MatButtonModule,
+    MatToolbarModule
   ],
   templateUrl: './dashboard-layout.html',
   styleUrl: './dashboard-layout.scss'
@@ -22,7 +23,8 @@ import { AuthService } from '../../services/auth.service';
 export class DashboardLayoutComponent {
 
   constructor(
-    private auth: AuthService
+    private auth: AuthService,
+    private router: Router
   ) {
   }
 
@@ -37,6 +39,19 @@ export class DashboardLayoutComponent {
     return this.user?.firstName?.charAt(0)
       ?.toUpperCase() ?? '?';
 
+  }
+
+  openProfile(): void {
+    this.router.navigate(['/profile']);
+  }
+
+  openTransactions(): void {
+    this.router.navigate(['/transactions']);
+  }
+
+  logout(): void {
+    this.auth.logout();
+    this.router.navigate(['/']);
   }
 
 }

@@ -1,24 +1,24 @@
 <div class="dashboard-layout">
 
-  <header class="top-bar">
+  <mat-toolbar color="primary">
+  <div class="welcome">
+    Welkom {{ user?.firstName }}
+  </div>
 
-    <div class="welcome">
+  <mat-divider></mat-divider>
 
-      Welkom {{ user?.firstName }}
+  <button
+    mat-icon-button
+    [matMenuTriggerFor]="dashboardMenu"
+    class="logout-button">
 
+    <div class="avatar">
+      {{ avatarLetter }}
     </div>
 
-    <button
-      mat-icon-button
-      [matMenuTriggerFor]="dashboardMenu">
+  </button>
 
-      <div class="avatar">
-
-        {{ avatarLetter }}
-
-      </div>
-
-    </button>
+  </mat-toolbar>
 
   </header>
 
@@ -32,36 +32,34 @@
 
 <mat-menu #dashboardMenu="matMenu">
 
-  <button
-    mat-menu-item
-    routerLink="/dashboard">
+    <button
+      mat-menu-item
+      (click)="openTransactions()">
 
-    Leefbudget
+      <mat-icon>home</mat-icon>
 
-  </button>
+      <span>Home</span>
 
-  <button
-    mat-menu-item
-    routerLink="/dashboard/cashflow">
+    </button>
 
-    Cashflow
+    <button
+      mat-menu-item
+      (click)="openProfile()">
 
-  </button>
+      <mat-icon>person</mat-icon>
 
-  <button
-    mat-menu-item
-    routerLink="/dashboard/structuur">
+      <span>Profiel</span>
 
-    Structuur
+    </button>
 
-  </button>
+    <button
+      mat-menu-item
+      (click)="logout()">
 
-  <button
-    mat-menu-item
-    routerLink="/dashboard/trends">
+      <mat-icon>logout</mat-icon>
 
-    Trends
+      <span>Uitloggen</span>
 
-  </button>
+    </button>
 
-</mat-menu>
+  </mat-menu>
