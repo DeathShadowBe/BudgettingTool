@@ -1,18 +1,24 @@
 import { Component } from '@angular/core';
 import { RouterOutlet, RouterLink, Router } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIcon } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDivider } from '@angular/material/divider';
 
 import { AuthService } from '../../services/auth.service';
+import { M } from '@angular/cdk/keycodes';
 
 @Component({
   selector: 'app-dashboard-layout',
   standalone: true,
   imports: [
+    RouterOutlet,
     MatMenuModule,
     MatButtonModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatIcon,
+    MatDivider
   ],
   templateUrl: './dashboard-layout.html',
   styleUrl: './dashboard-layout.scss'
