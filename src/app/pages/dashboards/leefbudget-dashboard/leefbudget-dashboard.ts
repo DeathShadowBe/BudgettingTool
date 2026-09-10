@@ -114,5 +114,51 @@ export class LeefbudgetDashboardComponent implements OnInit {
     ) * 100;
 
   }
+  
+  get gaugeData() {
+    return {
+
+      datasets: [
+        {
+          data: [
+            this.leefbudgetPercentage,
+            100 -
+              this.leefbudgetPercentage
+          ],
+
+          backgroundColor: [
+            this.helper
+              .getLeefBudgetKleur(
+                this.monthTransactions
+              ),
+
+            '#E0E0E0'
+          ]
+        }
+      ]
+
+    };
+
+  }
+
+  get leefbudgetKleur(): string {
+    if (
+      this.leefbudgetPercentage <=
+      this.config.leefbudgetPct * 100
+    ) {
+      return '#2E7D32';
+    }
+
+    if (
+      this.leefbudgetPercentage <=
+      this.config.waarschuwingsGrens * 100
+    ) {
+      return '#F9A825';
+    }
+
+    return '#C62828';
+
+  }
+
 
 }

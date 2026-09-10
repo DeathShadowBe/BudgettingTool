@@ -7,7 +7,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDivider } from '@angular/material/divider';
 
 import { AuthService } from '../../services/auth.service';
-import { M } from '@angular/cdk/keycodes';
 
 @Component({
   selector: 'app-dashboard-layout',
@@ -49,12 +48,11 @@ export class DashboardLayoutComponent {
   }
 
   openTransactions(): void {
-    this.router.navigate(['/transactions']);
+    this.router.navigate(['/']);
   }
 
   logout(): void {
     this.auth.logout();
     this.router.navigate(['/']);
   }
-
 }
