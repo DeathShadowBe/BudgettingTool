@@ -309,4 +309,47 @@ export class LeefbudgetDashboardComponent implements OnInit {
 
   }
 
+  get totaalLeefbudgetBedrag(): number {
+
+    return this.categorieOverzicht
+      .reduce(
+        (sum, row) =>
+          sum + row.bedrag,
+        0
+      );
+
+  }
+
+  get totaalLeefbudgetPercentage(): number {
+
+    return this.categorieOverzicht
+      .reduce(
+        (sum, row) =>
+          sum + row.percentage,
+        0
+      );
+
+  }
+
+
+  get categorieOverzichtMetTotaal() {
+
+    const rows =
+      [...this.categorieOverzicht];
+
+    rows.push({
+
+      categorie: 'Totaal',
+
+      bedrag:
+        this.totaalLeefbudgetBedrag,
+
+      percentage:
+        this.totaalLeefbudgetPercentage
+
+    });
+
+    return rows;
+
+  }
 }

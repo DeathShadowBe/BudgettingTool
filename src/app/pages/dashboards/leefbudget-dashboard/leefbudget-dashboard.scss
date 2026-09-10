@@ -76,10 +76,11 @@
 
 .chart-container {
 
-  height: 250px;
+  flex: 1;
 
   position: relative;
 
+  min-height: 300px;
 }
 
 table {
