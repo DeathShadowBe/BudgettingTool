@@ -92,6 +92,13 @@ export class LeefbudgetDashboardComponent implements OnInit {
     'project'
   ];
 
+  private readonly structureleCategorieen = [
+        'Wonen',
+        'Verzekeringen',
+        'Sparen',
+        'Nutsvoorzieningen'
+        ];
+
   constructor(
     private auth: AuthService,
     private transactionService: TransactionService,
@@ -139,6 +146,20 @@ export class LeefbudgetDashboardComponent implements OnInit {
         this.helper.getMaand(t) ===
         this.selectedMonth
     );
+
+  }
+
+  get leefbudgetTransactions(): Transaction[] {
+
+    return this.monthTransactions
+      .filter(t =>
+        !t.project &&
+        !t.intern &&
+        t.type === 'Uitgave' &&
+        !this.structureleCategorieen.includes(
+          t.categorie
+        )
+      );
 
   }
 
@@ -199,7 +220,7 @@ export class LeefbudgetDashboardComponent implements OnInit {
 
     const result: Record<string, number> = {};
 
-    this.monthTransactions
+    this.leefbudgetTransactions
       .forEach(transaction => {
 
         if (!result[transaction.categorie]) {
@@ -213,8 +234,7 @@ export class LeefbudgetDashboardComponent implements OnInit {
 
       });
 
-    return Object
-      .entries(result)
+    return Object.entries(result)
       .map(x => ({
 
         categorie: x[0],
@@ -228,7 +248,8 @@ export class LeefbudgetDashboardComponent implements OnInit {
 
       }))
       .sort(
-        (a, b) => b.bedrag - a.bedrag
+        (a, b) =>
+          b.bedrag - a.bedrag
       );
 
   }
@@ -286,12 +307,8 @@ export class LeefbudgetDashboardComponent implements OnInit {
 
   get detailTransactions(): Transaction[] {
 
-    let result = this.monthTransactions
-      .filter(t =>
-        !t.project &&
-        t.type === 'Uitgave' &&
-        !t.intern
-      );
+    let result =
+      this.leefbudgetTransactions;
 
     if (this.selectedCategory) {
 
@@ -302,10 +319,7 @@ export class LeefbudgetDashboardComponent implements OnInit {
 
     }
 
-    return result.sort(
-      (a, b) =>
-        b.bedrag - a.bedrag
-    );
+    return result;
 
   }
 
