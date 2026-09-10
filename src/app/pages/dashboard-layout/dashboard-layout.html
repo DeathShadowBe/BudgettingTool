@@ -1,0 +1,67 @@
+<div class="dashboard-layout">
+
+  <header class="top-bar">
+
+    <div class="welcome">
+
+      Welkom {{ user?.firstName }}
+
+    </div>
+
+    <button
+      mat-icon-button
+      [matMenuTriggerFor]="dashboardMenu">
+
+      <div class="avatar">
+
+        {{ avatarLetter }}
+
+      </div>
+
+    </button>
+
+  </header>
+
+  <div class="dashboard-content">
+
+    <router-outlet></router-outlet>
+
+  </div>
+
+</div>
+
+<mat-menu #dashboardMenu="matMenu">
+
+  <button
+    mat-menu-item
+    routerLink="/dashboard">
+
+    Leefbudget
+
+  </button>
+
+  <button
+    mat-menu-item
+    routerLink="/dashboard/cashflow">
+
+    Cashflow
+
+  </button>
+
+  <button
+    mat-menu-item
+    routerLink="/dashboard/structuur">
+
+    Structuur
+
+  </button>
+
+  <button
+    mat-menu-item
+    routerLink="/dashboard/trends">
+
+    Trends
+
+  </button>
+
+</mat-menu>
