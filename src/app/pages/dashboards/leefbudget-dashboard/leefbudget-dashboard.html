@@ -1,0 +1,72 @@
+<div class="dashboard-container">
+
+  <h1>Leefbudget Dashboard</h1>
+
+  <div class="header-row">
+
+    <mat-form-field>
+
+      <mat-label>Maand</mat-label>
+
+      <mat-select
+        [(value)]="selectedMonth">
+
+        <mat-option
+          *ngFor="let month of availableMonths"
+          [value]="month">
+
+          {{ month }}
+
+        </mat-option>
+
+      </mat-select>
+
+    </mat-form-field>
+
+  </div>
+
+  <div class="kpi-row">
+
+    <mat-card class="kpi-card">
+
+      <h2>
+        {{ leefuitgaven | currency:'EUR' }}
+      </h2>
+
+      <p>Leefuitgaven</p>
+
+    </mat-card>
+
+    <mat-card class="kpi-card">
+
+      <h2>
+        {{ config.doelLeefbudget | currency:'EUR' }}
+      </h2>
+
+      <p>Doel Leefbudget</p>
+
+    </mat-card>
+
+    <mat-card class="kpi-card">
+
+      <h2>
+        {{ verschilLeefbudget | currency:'EUR' }}
+      </h2>
+
+      <p>Verschil</p>
+
+    </mat-card>
+
+    <mat-card class="kpi-card">
+
+      <h2>
+        {{ leefbudgetPercentage | number:'1.0-0' }}%
+      </h2>
+
+      <p>Leefbudget %</p>
+
+    </mat-card>
+
+  </div>
+
+</div>

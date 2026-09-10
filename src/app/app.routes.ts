@@ -5,6 +5,7 @@ import { TransactionsComponent } from './pages/transactions/transactions';
 import { authGuard } from './guards/auth.guard';
 import { ProfileComponent } from './pages/profile/profile';
 import { ImportTransactionsComponent } from './pages/import-transactions/import-transactions';
+import { LeefbudgetDashboardComponent } from './pages/dashboards/leefbudget-dashboard/leefbudget-dashboard';
 
 export const routes: Routes = [
 
@@ -24,6 +25,9 @@ export const routes: Routes = [
   {
     path: 'import',
     component: ImportTransactionsComponent
+  },
+  {
+    path: 'dashboard',
+    component: LeefbudgetDashboardComponent
   }
-
 ];

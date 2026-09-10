@@ -313,8 +313,8 @@ openProfile(): void {
   this.router.navigate(['/profile']);
 }
 
-importTransactions(): void {
-  this.router.navigate(['/import']);
+openDashboard(): void {
+  this.router.navigate(['/dashboard']);
 }
 
 updateFormMode(): void {

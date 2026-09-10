@@ -1,0 +1,41 @@
+.dashboard-container {
+
+  padding: 24px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 20px;
+
+}
+
+.header-row {
+
+  display: flex;
+
+}
+
+.kpi-row {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
+
+  gap: 16px;
+
+}
+
+.kpi-card {
+
+  text-align: center;
+
+  padding: 20px;
+
+}
+
+.kpi-card h2 {
+
+  margin-bottom: 10px;
+
+}
