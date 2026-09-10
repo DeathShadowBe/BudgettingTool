@@ -52,18 +52,6 @@ export class LeefbudgetDashboardComponent implements OnInit {
         display: false
       }
 
-    },
-
-    scales: {
-
-      y: {
-
-        beginAtZero: true,
-
-        max: 100
-
-      }
-
     }
 
   };

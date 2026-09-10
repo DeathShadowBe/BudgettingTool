@@ -60,16 +60,25 @@
 
   display: grid;
 
-  grid-template-columns:
-    1fr 1.5fr;
+  grid-template-columns: 500px 1fr;
 
   gap: 20px;
+
+  align-items: start;
 
 }
 
 .detail-card {
 
   margin-top: 20px;
+
+}
+
+.chart-container {
+
+  height: 250px;
+
+  position: relative;
 
 }
 
