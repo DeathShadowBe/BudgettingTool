@@ -296,5 +296,29 @@ export class LeefbudgetDashboardComponent implements OnInit {
 
   }
 
+  get detailTransactions(): Transaction[] {
+
+    let result = this.monthTransactions
+      .filter(t =>
+        !t.project &&
+        t.type === 'Uitgave' &&
+        !t.intern
+      );
+
+    if (this.selectedCategory) {
+
+      result = result.filter(t =>
+        t.categorie ===
+        this.selectedCategory
+      );
+
+    }
+
+    return result.sort(
+      (a, b) =>
+        b.bedrag - a.bedrag
+    );
+
+  }
 
 }
