@@ -113,12 +113,7 @@ export class TransactionHelperService {
         .filter(t =>
         t.type === 'Uitgave' &&
         !t.intern &&
-        ![
-            'Wonen',
-            'Verzekeringen',
-            'Sparen',
-            'Nutsvoorzieningen'
-        ].includes(
+        !this.structureleCategorieen.includes(
             t.categorie
         )
         )
