@@ -1,18 +1,15 @@
 import { Component } from '@angular/core';
-import { RouterOutlet, RouterLink } from '@angular/router';
+import { RouterOutlet, RouterLink, Router } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 
 import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard-layout',
   standalone: true,
   imports: [
-    RouterOutlet,
-    RouterLink,
     MatMenuModule,
     MatButtonModule,
     MatToolbarModule
