@@ -20,7 +20,7 @@ import { AuthService } from '../../../services/auth.service';
   imports: [
     CommonModule,
     FormsModule,
-
+    BaseChartDirective,
     MatCardModule,
     MatFormFieldModule,
     MatSelectModule
