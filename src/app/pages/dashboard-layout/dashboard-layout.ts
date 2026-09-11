@@ -48,6 +48,14 @@ export class DashboardLayoutComponent {
     this.router.navigate(['/profile']);
   }
 
+  openDashboard(): void {
+    this.router.navigate(['/dashboard']);
+  }
+
+  openCashflowDashboard(): void {
+    this.router.navigate(['/dashboard/cashflow']);
+  }
+
   openTransactions(): void {
     this.router.navigate(['/']);
   }
