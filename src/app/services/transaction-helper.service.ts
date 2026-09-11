@@ -200,14 +200,14 @@ export class TransactionHelperService {
 
     if (
         pct <=
-        this.config.leefbudgetPct
+        this.config.leefbudgetPct * 100
     ) {
         return '#2E7D32';
     }
 
     if (
         pct <=
-        this.config.waarschuwingsGrens
+        this.config.waarschuwingsGrens * 100
     ) {
         return '#F9A825';
     }
