@@ -313,6 +313,10 @@ openProfile(): void {
   this.router.navigate(['/profile']);
 }
 
+openTransactions(): void {
+  this.router.navigate(['/']);
+}
+
 openDashboard(): void {
   this.router.navigate(['/dashboard']);
 }
