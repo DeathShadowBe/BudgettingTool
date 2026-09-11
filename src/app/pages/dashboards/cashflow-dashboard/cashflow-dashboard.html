@@ -15,7 +15,7 @@
           *ngFor="let month of availableMonths"
           [value]="month">
 
-         {{ month }}
+          {{ month }}
 
         </mat-option>
 
@@ -165,10 +165,7 @@
 
        <tr
           mat-row
-         *matRowDef="
-            let row;
-            columns: detailColumns
-          ">
+         *matRowDef="let row; columns: detailColumns">
         </tr>
 
      </table>

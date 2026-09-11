@@ -1,11 +1,14 @@
 .dashboard-container {
 
-  display: flex;
-  flex-direction: column;
+  width: 100%;
 
-  gap: 24px;
+  max-width: 1800px;
+
+  margin: 0 auto;
 
   padding: 20px;
+
+  box-sizing: border-box;
 
 }
 
@@ -30,12 +33,18 @@
 
   text-align: center;
 
+  height: 200px;
+
   display: flex;
   flex-direction: column;
 
   justify-content: center;
 
-  min-height: 140px;
+}
+
+.kpi-card h2 {
+
+  margin-bottom: 10px;
 
 }
 
@@ -47,17 +56,20 @@
 
 .chart-container {
 
-  height: 350px;
-
   position: relative;
 
+  min-height: 300px;
+
+  width: 100%;
 }
 
 .detail-table-container {
 
-  max-height: 500px;
+  max-height: 400px;
 
   overflow-y: auto;
+
+  overflow-x: hidden;
 
 }
 
