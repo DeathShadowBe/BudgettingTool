@@ -148,9 +148,9 @@ export class TransactionHelperService {
     transactions: Transaction[]
     ): number {
 
-    return this.getLeefUitgaven(
+    return (this.getLeefUitgaven(
         transactions
-    ) / this.config.structureelInkomen;
+    ) / this.config.structureelInkomen) * 100;
 
     }
 
