@@ -188,6 +188,28 @@ export class LeefbudgetDashboardComponent implements OnInit {
     ) * 100;
 
   }
+
+  getLeefBudgetBedrag(
+  transactions: Transaction[]
+): number {
+
+  return transactions.reduce(
+    (sum, transaction) => {
+
+      return sum +
+        (
+          transaction.type === 'Uitgave'
+            ? Math.abs(
+                transaction.bedrag
+              )
+            : transaction.bedrag
+        );
+
+    },
+    0
+  );
+
+}
   
   get gaugeData() {
     return {
@@ -217,35 +239,45 @@ export class LeefbudgetDashboardComponent implements OnInit {
 
   get categorieOverzicht() {
 
-    const result: Record<string, number> = {};
+    const result:
+      Record<string, Transaction[]> = {};
 
     this.leefbudgetTransactions
       .forEach(transaction => {
 
         if (!result[transaction.categorie]) {
 
-          result[transaction.categorie] = 0;
+          result[transaction.categorie] = [];
 
         }
 
-        result[transaction.categorie] +=
-          transaction.bedrag;
+        result[transaction.categorie]
+          .push(transaction);
 
       });
 
     return Object.entries(result)
-      .map(x => ({
+      .map(([categorie, transactions]) => {
 
-        categorie: x[0],
+        const bedrag =
+          this.helper.getLeefBudgetBedrag(
+            transactions
+          );
 
-        bedrag: x[1],
+        return {
 
-        percentage:
-          this.leefuitgaven === 0
-            ? 0
-            : (x[1] / this.leefuitgaven) * 100
+          categorie,
 
-      }))
+          bedrag,
+
+          percentage:
+            this.leefuitgaven === 0
+              ? 0
+              : (bedrag / this.leefuitgaven) * 100
+
+        };
+
+      })
       .sort(
         (a, b) =>
           b.bedrag - a.bedrag

@@ -154,6 +154,28 @@ export class TransactionHelperService {
 
     }
 
+    getLeefBudgetBedrag(
+  transactions: Transaction[]
+): number {
+
+  return transactions.reduce(
+    (sum, transaction) => {
+
+      return sum +
+        (
+          transaction.type === 'Uitgave'
+            ? Math.abs(
+                transaction.bedrag
+              )
+            : transaction.bedrag
+        );
+
+    },
+    0
+  );
+
+}
+
     getLeefBudgetVerschil(
     transactions: Transaction[]
     ): number {
