@@ -131,6 +131,7 @@ export class TransactionHelperService {
     return transactions
         .filter(t =>
         t.type === 'Uitgave' &&
+        !t.project &&
         !t.intern &&
         !this.structureleCategorieen.includes(
             t.categorie
