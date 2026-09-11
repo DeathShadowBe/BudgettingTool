@@ -1,5 +1,80 @@
 <div class="profile-container">
 
+  <mat-toolbar color="primary">
+  <div class="menu-header">
+    Welkom {{ user?.firstName }}
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <button
+    mat-icon-button
+    [matMenuTriggerFor]="profileMenu"
+    class="logout-button">
+
+    <div class="avatar">
+      {{ avatarLetter }}
+    </div>
+
+  </button>
+
+  </mat-toolbar>
+
+  <mat-menu #profileMenu="matMenu">
+
+    <button
+      mat-menu-item
+      (click)="openTransactions()">
+
+      <mat-icon>home</mat-icon>
+
+      <span>Home</span>
+
+    </button>
+
+    <button
+      mat-menu-item
+      (click)="openProfile()">
+
+      <mat-icon>person</mat-icon>
+
+      <span>Profiel</span>
+
+    </button>
+
+    <button
+      mat-menu-item
+      (click)="openDashboard()">
+
+      <mat-icon>dashboard</mat-icon>
+
+      <span>Leefbudget</span>
+
+    </button>
+
+    <button
+      mat-menu-item
+      (click)="openCashflowDashboard()">
+
+      <mat-icon>dashboard</mat-icon>
+
+      <span>Cashflow</span>
+
+    </button>
+
+    <button
+      mat-menu-item
+      (click)="logout()">
+
+      <mat-icon>logout</mat-icon>
+
+      <span>Uitloggen</span>
+
+    </button>
+
+  </mat-menu>
+
+
   <mat-card class="profile-card">
 
     <mat-card-header>
@@ -40,15 +115,6 @@
             matInput
             formControlName="email">
         </mat-form-field>
-
-          <button
-            mat-button
-            (click)="back()">
-
-            Home
-
-          </button>
-
           <button
             mat-raised-button
             color="primary"

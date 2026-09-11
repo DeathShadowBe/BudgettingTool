@@ -6,17 +6,22 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { MatIcon } from '@angular/material/icon';
+import { MatToolbar } from '@angular/material/toolbar';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDivider } from '@angular/material/divider';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [ReactiveFormsModule, MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule],
+  imports: [ReactiveFormsModule, MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIcon, MatToolbar, MatMenuModule, MatDivider],
   templateUrl: './profile.html',
   styleUrl: './profile.scss'
 })
 export class ProfileComponent {
 
   profileForm;
+  user: any;
 
   constructor(
     private fb: FormBuilder,
@@ -115,5 +120,31 @@ export class ProfileComponent {
 
         });
 
+  }
+
+  openProfile(): void {
+    this.router.navigate(['/profile']);
+  }
+
+  openTransactions(): void {
+    this.router.navigate(['/']);
+  }
+
+  openDashboard(): void {
+    this.router.navigate(['/dashboard']);
+  }
+
+  openCashflowDashboard(): void {
+      this.router.navigate(['/dashboard/cashflow']);
+  }
+
+  get avatarLetter(): string {
+    const avatarLetter = this.auth.getCurrentUser()?.username?.charAt(0)?.toUpperCase() ?? '?';
+    return avatarLetter;
+  }
+
+  logout(): void {
+    this.auth.logout();
+    this.router.navigate(['/']);
   }
 }
