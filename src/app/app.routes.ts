@@ -7,6 +7,7 @@ import { ProfileComponent } from './pages/profile/profile';
 import { ImportTransactionsComponent } from './pages/import-transactions/import-transactions';
 import { LeefbudgetDashboardComponent } from './pages/dashboards/leefbudget-dashboard/leefbudget-dashboard';
 import { DashboardLayoutComponent } from './pages/dashboard-layout/dashboard-layout';
+import { CashflowDashboardComponent } from './pages/dashboards/cashflow-dashboard/cashflow-dashboard'
 
 export const routes: Routes = [
 
@@ -35,6 +36,10 @@ export const routes: Routes = [
       {
         path: '',
         component: LeefbudgetDashboardComponent
+      },
+      {
+        path: 'cashflow',
+        component: CashflowDashboardComponent
       }
     ]
   }

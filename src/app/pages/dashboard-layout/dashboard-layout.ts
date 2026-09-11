@@ -13,6 +13,7 @@ import { AuthService } from '../../services/auth.service';
   standalone: true,
   imports: [
     RouterOutlet,
+    RouterLink,
     MatMenuModule,
     MatButtonModule,
     MatToolbarModule,

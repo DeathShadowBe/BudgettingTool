@@ -1,0 +1,68 @@
+.dashboard-container {
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 24px;
+
+  padding: 20px;
+
+}
+
+.header-row {
+
+  display: flex;
+
+}
+
+.kpi-row {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
+
+  gap: 16px;
+
+}
+
+.kpi-card {
+
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+
+  min-height: 140px;
+
+}
+
+.chart-card {
+
+    width: 100%;
+
+}
+
+.chart-container {
+
+  height: 350px;
+
+  position: relative;
+
+}
+
+.detail-table-container {
+
+  max-height: 500px;
+
+  overflow-y: auto;
+
+}
+
+table {
+
+  width: 100%;
+
+}
