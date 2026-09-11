@@ -76,8 +76,8 @@ export class CashflowDashboardComponent implements OnInit {
                 t => this.helper.getMaand(t)
               )
             )]
-              .sort()
-              .reverse();
+            .sort()
+            .reverse();
 
           this.selectedMonth =
             this.availableMonths[0];
