@@ -24,7 +24,6 @@ import { TransactionHelperService } from '../../../services/transaction-helper.s
     MatFormFieldModule,
     MatSelectModule,
     MatTableModule,
-
     BaseChartDirective
   ],
   templateUrl: './cashflow-dashboard.html',
@@ -48,6 +47,22 @@ export class CashflowDashboardComponent implements OnInit {
     'cashflowType',
     'project'
   ];
+
+  cashflowChartOptions = {
+
+    responsive: true,
+
+    maintainAspectRatio: false,
+
+    plugins: {
+
+      legend: {
+        display: false
+      }
+
+    }
+
+  };
 
   constructor(
     private auth: AuthService,
@@ -90,11 +105,11 @@ export class CashflowDashboardComponent implements OnInit {
 
   get monthTransactions(): Transaction[] {
 
-    return this.transactions
-      .filter(t =>
+    return this.transactions.filter(
+      t =>
         this.helper.getMaand(t) ===
         this.selectedMonth
-      );
+    );
 
   }
 
@@ -173,14 +188,6 @@ export class CashflowDashboardComponent implements OnInit {
     };
 
   }
-
-  cashflowChartOptions = {
-
-    responsive: true,
-
-    maintainAspectRatio: false
-
-  };
 
   get detailTransactions() {
 

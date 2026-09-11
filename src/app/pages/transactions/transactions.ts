@@ -317,6 +317,10 @@ openDashboard(): void {
   this.router.navigate(['/dashboard']);
 }
 
+openCashflowDashboard(): void {
+    this.router.navigate(['/dashboard/cashflow']);
+}
+
 updateFormMode(): void {
 
   const controls = [
