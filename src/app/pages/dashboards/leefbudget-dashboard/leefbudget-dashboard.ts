@@ -273,7 +273,7 @@ export class LeefbudgetDashboardComponent implements OnInit {
           percentage:
             this.leefuitgaven === 0
               ? 0
-              : (bedrag / this.leefuitgaven) * 100
+              : (this.leefuitgaven / this.config.structureelInkomen) * 100
 
         };
 
