@@ -9,7 +9,7 @@ export class DashboardConfigService {
 
   leefbudgetPct = 0.6;
 
-  doelLeefbudget = 1551;
+  doelLeefbudget = 1300;
 
   waarschuwingsGrens = 0.8;
 

@@ -321,14 +321,14 @@ export class LeefbudgetDashboardComponent implements OnInit {
   get leefbudgetKleur(): string {
     if (
       this.leefbudgetPercentage <=
-      this.config.leefbudgetPct * 100
+      this.config.leefbudgetPct 
     ) {
       return '#2E7D32';
     }
 
     if (
       this.leefbudgetPercentage <=
-      this.config.waarschuwingsGrens * 100
+      this.config.waarschuwingsGrens
     ) {
       return '#F9A825';
     }
