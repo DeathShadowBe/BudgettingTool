@@ -153,7 +153,6 @@ export class LeefbudgetDashboardComponent implements OnInit {
 
     return this.monthTransactions
       .filter(t =>
-        !t.project &&
         !t.intern &&
         t.type === 'Uitgave' &&
         !this.structureleCategorieen.includes(
