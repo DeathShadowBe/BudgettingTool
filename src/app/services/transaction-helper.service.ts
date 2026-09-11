@@ -130,7 +130,6 @@ export class TransactionHelperService {
 
     return transactions
         .filter(t =>
-        !t.project &&
         t.type === 'Uitgave' &&
         !t.intern &&
         !this.structureleCategorieen.includes(
