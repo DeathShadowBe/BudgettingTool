@@ -264,17 +264,18 @@ export class LeefbudgetDashboardComponent implements OnInit {
             transactions
           );
 
+        const percentage =
+          this.helper.getLeefBudgetPercentage(
+            transactions
+          );
+
         return {
 
           categorie,
 
           bedrag,
 
-          percentage:
-            bedrag === 0
-              ? 0
-              : (bedrag / this.config.structureelInkomen) * 100
-
+          percentage
         };
 
       })
