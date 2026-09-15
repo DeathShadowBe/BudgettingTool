@@ -105,3 +105,37 @@ table {
   overflow-x: hidden;
 
 }
+
+@media (max-width: 768px) {
+
+  .dashboard-container {
+
+    padding: 12px;
+
+  }
+
+  .kpi-row {
+
+    grid-template-columns: 1fr;
+
+  }
+
+  .analytics-row {
+
+    grid-template-columns: 1fr;
+
+  }
+
+  .kpi-card h2 {
+
+    font-size: 22px;
+
+  }
+
+  .detail-table-container {
+
+    overflow-x: auto;
+
+  }
+
+}
