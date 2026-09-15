@@ -65,14 +65,21 @@
 
   grid-template-columns:
     repeat(
-      auto-fit,
-      minmax(400px, 1fr)
+      2,
+      minmax(0, 1fr)
     );
 
   gap: 20px;
   
   margin-top: 20px;
 
+  width: 100%;
+  min-width: 0;
+
+}
+
+.analytics-row > * {
+  min-width: 0;
 }
 
 .detail-card {
