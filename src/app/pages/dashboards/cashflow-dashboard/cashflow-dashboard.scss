@@ -73,16 +73,38 @@
 
 .detail-table-container {
 
-  max-height: 400px;
+  max-height: 500px;
 
   overflow-y: auto;
 
-  overflow-x: hidden;
+  overflow-x: auto;
 
 }
 
 table {
 
   width: 100%;
+
+}
+
+@media (max-width: 768px) {
+
+  .dashboard-container {
+
+    padding: 12px;
+
+  }
+
+  .kpi-row {
+
+    grid-template-columns: 1fr;
+
+  }
+
+  .analytics-row {
+
+    grid-template-columns: 1fr;
+
+  }
 
 }
