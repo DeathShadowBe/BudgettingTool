@@ -28,16 +28,16 @@ export class AuthService {
   }
 
   logout(): void {
-    localStorage.removeItem('user');
+    sessionStorage.removeItem('user');
   }
 
   isAuthenticated(): boolean {
-    return localStorage.getItem('user') !== null;
+    return sessionStorage.getItem('user') !== null;
   }
 
   getCurrentUser() {
     const user =
-      localStorage.getItem('user');
+      sessionStorage.getItem('user');
 
     return user ? JSON.parse(user): null;
   }

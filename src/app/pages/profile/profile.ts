@@ -101,7 +101,7 @@ export class ProfileComponent {
 
           next: (updatedUser) => {
 
-            localStorage.setItem(
+            sessionStorage.setItem(
               'user',
               JSON.stringify(updatedUser)
             );

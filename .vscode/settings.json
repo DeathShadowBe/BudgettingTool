@@ -1,4 +1,5 @@
 {
     "staticWebApps.outputSubpath": "dist/angular-basic",
-    "sarif-viewer.connectToGithubCodeScanning": "off"
+    "sarif-viewer.connectToGithubCodeScanning": "off",
+    "codeQL.githubDatabase.update": "never"
 }
