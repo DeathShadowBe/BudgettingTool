@@ -59,7 +59,7 @@ export class LoginComponent {
 
         next: (user) => {
 
-          sessionStorage.setItem(
+          localStorage.setItem(
             'user',
             JSON.stringify(user)
           );
