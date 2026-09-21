@@ -64,29 +64,48 @@ async (
 });
 
 app.MapPost("/api/auth/login",
-    async (
-        LoginRequest request,
-        AppDbContext db
-    ) =>
+async (
+    LoginRequest request,
+    AppDbContext db
+) =>
 {
-    var user = await db.Users
-        .FirstOrDefaultAsync(x =>
-            x.Username == request.Username &&
-            x.PasswordHash == request.Password);
-
-    if (user is null)
+    try
     {
-        return Results.Unauthorized();
+        Console.WriteLine(
+            $"Login attempt: {request.Username}"
+        );
+
+        var user = await db.Users
+            .FirstOrDefaultAsync(x =>
+                x.Username == request.Username &&
+                x.PasswordHash == request.Password);
+
+        Console.WriteLine(
+            $"User found: {user != null}"
+        );
+
+        if (user is null)
+        {
+            return Results.Unauthorized();
+        }
+
+        return Results.Ok(new
+        {
+            user.Id,
+            user.Username,
+            user.FirstName,
+            user.LastName,
+            user.Email
+        });
     }
-
-    return Results.Ok(new
+    catch(Exception ex)
     {
-        user.Id,
-        user.Username,
-        user.FirstName,
-        user.LastName,
-        user.Email
-    });
+        Console.WriteLine(ex);
+
+        return Results.Problem(
+            ex.ToString()
+        );
+    }
 });
 
 app.MapPost("/api/transactions",
